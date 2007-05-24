@@ -1,0 +1,115 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="z3c.formui">
+
+  <interface
+      interface=".interfaces.IFormUILayer"
+      type="zope.publisher.interfaces.browser.IBrowserSkinType"
+      />
+
+  <interface
+      interface=".interfaces.IDivFormLayer"
+      type="zope.publisher.interfaces.browser.IBrowserSkinType"
+      />
+
+  <interface
+      interface=".interfaces.ITableFormLayer"
+      type="zope.publisher.interfaces.browser.IBrowserSkinType"
+      />
+
+  <!-- Table-based Form -->
+  <browser:resource
+      name="table-form.css"
+      file="table-form.css"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <browser:viewlet
+      name="table-form.css"
+      for="*"
+      manager=".interfaces.ICSS"
+      class=".browser.TableFormCSSViewlet"
+      permission="zope.Public"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:macro
+      name="form"
+      template="table-form.pt"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:macro
+      name="form-header"
+      macro="header"
+      template="table-form.pt"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:macro
+      name="form-table"
+      macro="table"
+      template="table-form.pt"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:macro
+      name="form-buttons"
+      macro="buttons"
+      template="table-form.pt"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:template
+      template="table-form.pt"
+      for="z3c.form.interfaces.IInputForm"
+      layer=".interfaces.ITableFormLayer"
+      />
+
+  <!-- DIV-based Form -->
+  <browser:resource
+      name="div-form.css"
+      file="div-form.css"
+      layer=".interfaces.IDivFormLayer"
+      />
+  <browser:viewlet
+      name="div-form.css"
+      for="*"
+      manager=".interfaces.ICSS"
+      class=".browser.DivFormCSSViewlet"
+      permission="zope.Public"
+      layer=".interfaces.IDivFormLayer"
+      />
+  <z3c:macro
+      name="form"
+      template="div-form.pt"
+      layer=".interfaces.IDivFormLayer"
+      />
+  <z3c:macro
+      name="form-header"
+      macro="header"
+      template="div-form.pt"
+      layer=".interfaces.IDivFormLayer"
+      />
+  <z3c:macro
+      name="widget-rows"
+      macro="widget-rows"
+      template="div-form.pt"
+      layer=".interfaces.IDivFormLayer"
+      />
+  <z3c:macro
+      name="widget-row"
+      macro="widget-row"
+      template="div-form.pt"
+      layer=".interfaces.IDivFormLayer"
+      />
+  <z3c:macro
+      name="form-buttons"
+      macro="buttons"
+      template="div-form.pt"
+      layer=".interfaces.IDivFormLayer"
+      />
+  <z3c:template
+      template="div-form.pt"
+      for="z3c.form.interfaces.IInputForm"
+      layer=".interfaces.IDivFormLayer"
+      />
+
+
+</configure>

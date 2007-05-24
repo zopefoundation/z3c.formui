@@ -1,0 +1,90 @@
+/*----[ table based form tags ]----------------------------------------------*/
+
+form.edit-form {
+    margin: 0px;
+    padding: 0px;
+}
+
+form.edit-form td {
+    vertical-align: top;
+    padding-bottom: 10px;
+}
+
+form.edit-form td.label {
+    margin: 0px;
+    padding-top: 5px;
+}
+
+div.viewspace {
+    margin: 0px;
+    padding: 0px;
+}
+
+div.status {
+    padding-bottom: 10px;
+}
+
+div.summary {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.errors {
+    padding: 0px;
+    color: red;
+    margin-left: 20px;
+}
+
+div.error {
+    margin: 0px;
+    padding: 0px;
+}
+
+span.required {
+    color: red;
+}
+
+div.widget {
+    margin: 0px;
+    padding: 0px;
+}
+
+input, textarea, select {
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid gray;
+}
+
+input.fileWidget {
+    width: 300px;
+}
+
+input.checkBoxWidget {
+    border: none;
+}
+
+input.passwordWidget {
+    width: 300px;
+}
+
+input.radioWidget {
+    border: none;
+}
+
+select.selectWidget {
+    width: 300px;
+    border: 1px solid gray;
+}
+
+input.textWidget {
+    width: 300px;
+}
+
+textarea.textAreaWidget {
+    width: 300px;
+    height: 100px;
+}
+
+div.buttons {
+    padding: 10px 0px 10px 0px;
+}
