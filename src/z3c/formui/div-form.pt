@@ -33,7 +33,7 @@
       <div class="row" tal:repeat="widget view/widgets/values">
         <metal:block define-macro="widget-row">
         <div class="label">
-          <label tal:attributes="for widget/name">
+          <label tal:attributes="for widget/id">
             <span i18n:translate=""
                       tal:content="widget/label">label</span>
             <span class="required" tal:condition="widget/required">*</span>
