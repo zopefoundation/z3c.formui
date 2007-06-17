@@ -9,22 +9,22 @@
                       id view/id">
   <div class="viewspace" metal:define-slot="viewspace">
     <metal:block define-macro="header">
-    <div class="status"
+      <div class="status"
            tal:define="status view/status"
            tal:condition="status">
-      <div class="summary"
+        <div class="summary"
              i18n:translate=""
              tal:content="view/status">
-        Form status summary
+          Form status summary
+        </div>
+        <ul class="errors" tal:condition="view/widgets/errors">
+          <li tal:repeat="error view/widgets/errors">
+            <span tal:replace="error/widget/label" />
+            :
+            <span tal:replace="structure error/render"> Error Type </span>
+          </li>
+        </ul>
       </div>
-      <ul class="errors" tal:condition="view/widgets/errors">
-        <li tal:repeat="error view/widgets/errors">
-          <span tal:replace="error/widget/label" />
-          :
-          <span tal:replace="structure error/render"> Error Type </span>
-        </li>
-      </ul>
-    </div>
     </metal:block>
     <div metal:define-slot="extra_info" tal:replace="nothing">
     </div>
@@ -32,13 +32,13 @@
       <table class="form-fields" metal:define-macro="formtable">
         <tr class="extraTopRow" metal:define-slot="extra_top" tal:replace="nothing">
           <td class="label"> Extra top </td>
-          <td class="field">
-            <input type="text" />
+          <td class="field"><input type="text" />
           </td>
         </tr>
         <tbody metal:define-slot="formbody" tal:omit-tag="">
           <tal:block omit-tag="" repeat="widget view/widgets/values">
-            <tr metal:define-macro="formrow" class="row">
+            <tr metal:define-macro="formrow" class="row"
+                tal:condition="python:widget.mode != 'hidden'">
               <td class="label" metal:define-macro="labelcell">
                 <label tal:attributes="for widget/id">
                   <span i18n:translate=""
@@ -53,7 +53,8 @@
                 <div class="error"
                      tal:condition="widget/error">
                   <span tal:replace="structure widget/error"> error </span>
-                </div></td>
+                </div>
+              </td>
             </tr>
           </tal:block>
         </tbody>
@@ -63,16 +64,20 @@
           </td>
         </tr>
       </table>
+      <tal:block repeat="widget view/widgets/values"
+	    ><input type="hidden" value="" tal:condition="python:widget.mode == 'hidden'"
+               tal:replace="structure widget/render" 
+      /></tal:block>
     </div>
     <metal:block define-slot="above-buttons">
     </metal:block>
   </div>
   <metal:block define-slot="buttons">
-  <div metal:define-macro="buttons">
-    <div class="buttons" metal:define-slot="bottom-buttons">
+    <div metal:define-macro="buttons">
+      <div class="buttons" metal:define-slot="bottom-buttons">
         <input tal:repeat="action view/actions/values"
                tal:replace="structure action/render" />
+      </div>
     </div>
-  </div>
   </metal:block>
 </form>
