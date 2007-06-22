@@ -2,14 +2,14 @@
 CHANGES
 =======
 
-Version 1.0.1 (6/??/2007)
+Version 1.0.1 (6/22/2007)
 -------------------------
 
-- Bug: Make sure we use the id for the "for" attribute of the "label" 
-  element and not the name. This has worked until recently, because the 
+- Bug: Make sure we use the id for the "for" attribute of the "label"
+  element and not the name. This has worked until recently, because the
   name and id were the same, but they are different now.
 
 Version 1.0.0 (5/24/2007)
 -------------------------
 
-- Initial Releas
+- Initial Release
