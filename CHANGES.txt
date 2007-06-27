@@ -2,6 +2,11 @@
 CHANGES
 =======
 
+Version 1.1.0 (??/??/2007)
+-------------------------
+
+- Feature: Added support for groups to templates.
+
 Version 1.0.1 (6/22/2007)
 -------------------------
 

@@ -30,7 +30,9 @@
     </div>
     <div metal:define-slot="main">
       <table class="form-fields" metal:define-macro="formtable">
-        <tr class="extraTopRow" metal:define-slot="extra_top" tal:replace="nothing">
+        <tr class="extraTopRow"
+            metal:define-slot="extra_top"
+            tal:replace="nothing">
           <td class="label"> Extra top </td>
           <td class="field"><input type="text" />
           </td>
@@ -43,7 +45,8 @@
                 <label tal:attributes="for widget/id">
                   <span i18n:translate=""
                         tal:content="widget/label"> label </span>
-                  <span class="required" tal:condition="widget/required"> * </span>
+                  <span class="required"
+                        tal:condition="widget/required"> * </span>
                 </label>
               </td>
               <td class="field" metal:define-macro="widgetcell">
@@ -58,15 +61,27 @@
             </tr>
           </tal:block>
         </tbody>
-        <tr class="extraBottomRow" metal:define-slot="extra_bottom" tal:replace="nothing">
+        <tr class="extraBottomRow"
+            metal:define-slot="extra_bottom"
+            tal:replace="nothing">
           <td class="label"> Extra bottom </td>
           <td class="label"><input type="text" />
           </td>
         </tr>
       </table>
+      <metal:block define-macro="groups">
+        <fieldgroup tal:condition="view/groups|nothing"
+                    tal:repeat="view view/groups">
+          <legend tal:condition="view/label"
+                  tal:content="view/label">Label</legend>
+          <div metal:use-macro="template/macros/header" />
+          <div metal:use-macro="template/macros/formtable" />
+        </fieldgroup>
+      </metal:block>
       <tal:block repeat="widget view/widgets/values"
-	    ><input type="hidden" value="" tal:condition="python:widget.mode == 'hidden'"
-               tal:replace="structure widget/render" 
+	    ><input type="hidden" value=""
+                    tal:condition="python:widget.mode == 'hidden'"
+                    tal:replace="structure widget/render"
       /></tal:block>
     </div>
     <metal:block define-slot="above-buttons">

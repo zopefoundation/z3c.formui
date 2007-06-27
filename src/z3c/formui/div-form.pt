@@ -9,22 +9,22 @@
                       id view/id">
   <div class="viewspace" metal:define-slot="viewspace">
     <metal:block define-macro="header">
-    <div class="status"
-           tal:define="status view/status"
-           tal:condition="status">
-      <div class="summary"
-             i18n:translate=""
-             tal:content="view/status">
-        Form status summary
+      <div class="status"
+             tal:define="status view/status"
+             tal:condition="status">
+        <div class="summary"
+               i18n:translate=""
+               tal:content="view/status">
+          Form status summary
+        </div>
+        <ul class="errors" tal:condition="view/widgets/errors">
+          <li tal:repeat="error view/widgets/errors">
+            <span tal:replace="error/widget/label" />
+            :
+            <span tal:replace="structure error/render">Error Type</span>
+          </li>
+        </ul>
       </div>
-      <ul class="errors" tal:condition="view/widgets/errors">
-        <li tal:repeat="error view/widgets/errors">
-          <span tal:replace="error/widget/label" />
-          :
-          <span tal:replace="structure error/render">Error Type</span>
-        </li>
-      </ul>
-    </div>
     </metal:block>
     <div metal:define-slot="extra-info" tal:replace="nothing">
     </div>
@@ -37,7 +37,8 @@
                 <label tal:attributes="for widget/id">
                   <span i18n:translate=""
                       tal:content="widget/label">label</span>
-                  <span class="required" tal:condition="widget/required">*</span>
+                  <span class="required"
+                        tal:condition="widget/required">*</span>
                 </label>
               </div>
               <div class="widget" tal:content="structure widget/render">
@@ -53,6 +54,15 @@
                  tal:condition="python:widget.mode == 'hidden'"
                  tal:replace="structure widget/render" />
         </tal:block>
+      </metal:block>
+      <metal:block define-macro="groups">
+        <fieldgroup tal:condition="view/groups|nothing"
+                    tal:repeat="view view/groups">
+          <legend tal:condition="view/label"
+                  tal:content="view/label">Label</legend>
+          <div metal:use-macro="template/macros/header" />
+          <div metal:use-macro="template/macros/widget-rows" />
+        </fieldgroup>
       </metal:block>
     </div>
     <metal:block define-slot="above-buttons">
