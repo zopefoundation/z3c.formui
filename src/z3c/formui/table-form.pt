@@ -8,6 +8,12 @@
                       name view/name;
                       id view/id">
   <div class="viewspace" metal:define-slot="viewspace">
+    <metal:block define-macro="label">
+      <h1 tal:condition="view/label|nothing"
+          tal:content="view/label">
+        Form Label
+      </h1>
+    </metal:block>
     <metal:block define-macro="header">
       <div class="status"
            tal:define="status view/status"
@@ -70,13 +76,13 @@
         </tr>
       </table>
       <metal:block define-macro="groups">
-        <fieldgroup tal:condition="view/groups|nothing"
+        <fieldset tal:condition="view/groups|nothing"
                     tal:repeat="view view/groups">
           <legend tal:condition="view/label"
                   tal:content="view/label">Label</legend>
           <div metal:use-macro="template/macros/header" />
           <div metal:use-macro="template/macros/formtable" />
-        </fieldgroup>
+        </fieldset>
       </metal:block>
       <tal:block repeat="widget view/widgets/values"
 	    ><input type="hidden" value=""
