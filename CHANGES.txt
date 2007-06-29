@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-Version 1.1.0 (??/??/2007)
+Version 1.1.0 (6/29/2007)
 -------------------------
 
 - Feature: Registered all defined macros for each form template. Also, added
