@@ -2,6 +2,14 @@
 CHANGES
 =======
 
+Version 1.1.1 (7/4/2007)
+-------------------------
+
+- Refactoring: Split up registrations for simpler management of UI
+  components. This also makes it easier to see for developers how to create a
+  new template for forms.
+
+
 Version 1.1.0 (6/29/2007)
 -------------------------
 
