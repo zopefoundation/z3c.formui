@@ -2,6 +2,14 @@
 CHANGES
 =======
 
+Version 1.2.1 (8/??/2007)
+-------------------------
+
+- Bug: The table-form template did not properly render the error at the
+  widget, because the ``render()`` method was not called. Thanks to Markus
+  Leist for the report.
+
+
 Version 1.2.0 (7/18/2007)
 -------------------------
 

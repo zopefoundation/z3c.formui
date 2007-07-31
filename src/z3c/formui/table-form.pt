@@ -70,7 +70,9 @@
                 </div>
                 <div class="error"
                      tal:condition="widget/error">
-                  <span tal:replace="structure widget/error"> error </span>
+                  <span tal:replace="structure widget/error/render">
+                    error
+                  </span>
                 </div>
               </td>
             </tr>
