@@ -40,7 +40,7 @@ div.error {
     padding: 0px;
 }
 
-span.required {
+div.required-info span.required, td.label span.required {
     color: red;
 }
 
@@ -55,32 +55,32 @@ input, textarea, select {
     border: 1px solid gray;
 }
 
-input.fileWidget {
+input.file-widget {
     width: 300px;
 }
 
-input.checkBoxWidget {
+input.checkbox-widget {
     border: none;
 }
 
-input.passwordWidget {
+input.password-widget {
     width: 300px;
 }
 
-input.radioWidget {
+input.radio-widget {
     border: none;
 }
 
-select.selectWidget {
+select.select-widget {
     width: 300px;
     border: 1px solid gray;
 }
 
-input.textWidget {
+input.text-widget {
     width: 300px;
 }
 
-textarea.textAreaWidget {
+textarea.textarea-widget {
     width: 300px;
     height: 100px;
 }
