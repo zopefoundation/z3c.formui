@@ -8,6 +8,10 @@ Version 1.3.0 (8/??/2007)
 - Refactoring: Update CSS classes to reflect latest changes to the widget
   classes in ``z3c.form``.
 
+- Bug: Error view snippets may have a empty ``widget`` attribute values, so we
+  cannot rely on accessing the label of the widget. This is the case, if the
+  error view sniipet was created from an invariants validation error.
+
 - Bug: The table-form template did not properly render the error at the
   widget, because the ``render()`` method was not called. Thanks to Markus
   Leist for the report.

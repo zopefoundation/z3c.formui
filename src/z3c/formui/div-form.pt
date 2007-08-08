@@ -35,7 +35,9 @@
             tal:condition="view/widgets/errors"
             metal:define-macro="errors">
           <li tal:repeat="error view/widgets/errors">
-            <span tal:replace="error/widget/label" />:
+            <tal:block condition="error/widget">
+              <span tal:replace="error/widget/label" />:
+            </tal:block>
             <span tal:replace="structure error/render">Error Type</span>
           </li>
         </ul>
