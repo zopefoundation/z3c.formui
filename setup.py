@@ -23,7 +23,7 @@ def read(*rnames):
 
 setup (
     name='z3c.formui',
-    version='1.2.0',
+    version='1.3.0',
     author = "Stephan Richter, Roger Ineichen and the Zope Community",
     author_email = "zope3-dev@zope.org",
     description = "A set of initial UI components for z3c.form.",
@@ -35,7 +35,7 @@ setup (
     license = "ZPL 2.1",
     keywords = "zope3 form widget",
     classifiers = [
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
@@ -44,7 +44,7 @@ setup (
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
         'Framework :: Zope3'],
-    url = 'http://svn.zope.org//z3c.formui',
+    url = 'http://cheeseshop.python.org/pypi/z3c.formui',
     packages = find_packages('src'),
     include_package_data = True,
     package_dir = {'':'src'},

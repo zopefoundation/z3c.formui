@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-Version 1.3.0 (8/??/2007)
+Version 1.3.0 (8/24/2007)
 -------------------------
 
 - Refactoring: Update CSS classes to reflect latest changes to the widget
