@@ -16,25 +16,37 @@
 $Id$
 """
 __docformat__ = "reStructuredText"
+
 import zope.component
 from z3c.template.interfaces import ILayoutTemplate
 
+
 class FormLayoutSupport(object):
+    """Layout support for forms except IAddForm."""
+
+    layout = None
 
     def __call__(self):
         self.update()
-        layout = zope.component.getMultiAdapter((self, self.request),
-            ILayoutTemplate)
-        return layout(self)
+        if self.layout is None:
+            layout = zope.component.getMultiAdapter((self, self.request),
+                ILayoutTemplate)
+            return layout(self)
+        return self.layout()
 
 
 class AddFormLayoutSupport(object):
+    """Layout support for IAddForm."""
+
+    layout = None
 
     def __call__(self):
         self.update()
         if self._finishedAdd:
             self.request.response.redirect(self.nextURL())
             return ''
-        layout = zope.component.getMultiAdapter((self, self.request),
-            ILayoutTemplate)
-        return layout(self)
+        if self.layout is None:
+            layout = zope.component.getMultiAdapter((self, self.request),
+                ILayoutTemplate)
+            return layout(self)
+        return self.layout()

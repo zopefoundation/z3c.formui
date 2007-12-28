@@ -2,6 +2,16 @@
 CHANGES
 =======
 
+Version 1.4.0 (unreleased)
+-------------------------
+
+- Improve layout implementation, support built in layout templates
+
+- Added form module which offers built in layout support.
+
+- Added unittests for layout support
+
+
 Version 1.3.0 (8/24/2007)
 -------------------------
 

@@ -27,6 +27,11 @@
       layer=".interfaces.ITableFormLayer"
       />
   <z3c:macro
+      name="subform"
+      template="table-form.pt"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:macro
       name="form-label"
       macro="label"
       template="table-form.pt"

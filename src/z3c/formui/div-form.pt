@@ -7,6 +7,7 @@
                       action view/action;
                       name view/name;
                       id view/id">
+  <metal:block define-macro="subform">
   <div class="viewspace" metal:define-slot="viewspace">
     <metal:block define-slot="label">
       <h1 metal:define-macro="label"
@@ -103,5 +104,8 @@
            />
     </div>
   </div>
+  </metal:block>
+  <metal:block define-slot="bottom">
+  </metal:block>
   </metal:block>
 </form>

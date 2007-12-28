@@ -27,6 +27,11 @@
       layer=".interfaces.IDivFormLayer"
       />
   <z3c:macro
+      name="subform"
+      template="div-form.pt"
+      layer=".interfaces.IDivFormLayer"
+      />
+  <z3c:macro
       name="form-label"
       macro="label"
       template="div-form.pt"
