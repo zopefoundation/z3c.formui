@@ -5,11 +5,16 @@ CHANGES
 Version 1.4.0 (unreleased)
 -------------------------
 
+- Bugfix, rename table macro argument from 创form-required-info创 to 
+  创required-info创. The macro 创form-required-info创 did not exist.
+
 - Improve layout implementation, support built in layout templates
 
 - Added form module which offers built in layout support.
 
 - Added unittests for layout support
+
+- Added tests for layout macros
 
 
 Version 1.3.0 (8/24/2007)

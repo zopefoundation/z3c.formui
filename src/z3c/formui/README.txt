@@ -313,6 +313,128 @@ Now our new request should know the table based form template:
   </html>
 
 
+Form Macros
+-----------
+
+Try at least to load the confguration, which will make sure that all macros
+get registered correctly.
+
+  >>> from zope.configuration import xmlconfig
+  >>> import zope.component
+  >>> import zope.viewlet
+  >>> import zope.app.component
+  >>> import zope.app.publisher.browser
+  >>> import z3c.macro
+  >>> import z3c.template
+  >>> import z3c.formui
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.component)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.viewlet)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.app.component)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.app.publisher.browser)()
+  >>> xmlconfig.XMLConfig('meta.zcml', z3c.macro)()
+  >>> xmlconfig.XMLConfig('meta.zcml', z3c.template)()
+  >>> xmlconfig.XMLConfig('configure.zcml', z3c.formui)()
+
+
+Div layout macros
+-----------------
+
+Now we can see that we have different form macros available:
+
+  >>> from z3c.macro.interfaces import IMacroTemplate
+  >>> objects = (None, addForm, divRequest)
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form')
+  [...div-form.pt'), ...metal:define-macro': u'form'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'subform')
+  [...div-form.pt'), ...define-macro': u'subform'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-label')
+  [...div-form.pt'), ...define-macro': u'label'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-required-info')
+  [...div-form.pt'), ...define-macro', u'required-info'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-header')
+  [...div-form.pt'), ...define-macro': u'header'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-errors')
+  [...div-form.pt'), ...define-macro': u'errors'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'widget-rows')
+  [...div-form.pt'), ...define-macro': u'widget-rows'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'widget-row')
+  [...div-form.pt'), ...define-macro': u'widget-row'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-groups')
+  [...div-form.pt'), ...define-macro': u'groups'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-buttons')
+  [...div-form.pt'), ...define-macro', u'buttons'...
+
+
+Table layout macros
+-------------------
+
+  >>> objects = (None, addForm, tableRequest)
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form')
+  [...table-form.pt'), ...metal:define-macro': u'form'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'subform')
+  [...table-form.pt'), ...define-macro': u'subform'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-label')
+  [...table-form.pt'), ...define-macro': u'label'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-required-info')
+  [...table-form.pt'), ...define-macro', u'required-info'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-header')
+  [...table-form.pt'), ...define-macro': u'header'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-errors')
+  [...table-form.pt'), ...define-macro': u'errors'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-table')
+  [...table-form.pt'), ...define-macro', u'formtable'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-row')
+  [...table-form.pt'), ...define-macro': u'formrow'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-label-cell')
+  [...table-form.pt'), ...define-macro', u'labelcell'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-widget-cell')
+  [...table-form.pt'), ...define-macro', u'widgetcell'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-groups')
+  [...table-form.pt'), ...define-macro': u'groups'...
+
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-buttons')
+  [...table-form.pt'), ...define-macro', u'buttons'...
+
+
 Cleanup
 -------
 

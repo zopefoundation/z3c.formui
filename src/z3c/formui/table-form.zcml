@@ -39,7 +39,7 @@
       />
   <z3c:macro
       name="form-required-info"
-      macro="form-required-info"
+      macro="required-info"
       template="table-form.pt"
       layer=".interfaces.ITableFormLayer"
       />
