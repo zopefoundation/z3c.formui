@@ -5,16 +5,28 @@ CHANGES
 Version 1.4.0 (unreleased)
 -------------------------
 
-- Bugfix, rename table macro argument from 创form-required-info创 to 
+- Bug: added missing display IContentTemplate, otherwise we can run into a 
+  recursion in some case
+
+- Bug: rename table macro argument from 创form-required-info创 to 
   创required-info创. The macro 创form-required-info创 did not exist.
 
-- Improve layout implementation, support built in layout templates
+- Feature: Added subform content and layout template. This allows you to
+  configure real sub forms which do not render the form tag for sub forms.
 
-- Added form module which offers built in layout support.
+- Feature: Improve layout implementation, support built in layout templates
+
+- Feature: Use IContentTemplate instead of IPageTemplate in layout base 
+  classes. This will help to prevent running into recursion errors if there 
+  is a missing layout template.
+
+- Feature: Added form module which offers built in layout support.
 
 - Added unittests for layout support
 
 - Added tests for layout macros
+
+- Added tests for layout templates
 
 
 Version 1.3.0 (8/24/2007)

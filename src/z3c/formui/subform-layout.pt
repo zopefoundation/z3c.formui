@@ -1,0 +1,3 @@
+<tal:block replace="structure provider:pagelet">
+  content
+</tal:block>

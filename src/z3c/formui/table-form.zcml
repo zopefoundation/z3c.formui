@@ -21,6 +21,8 @@
       permission="zope.Public"
       layer=".interfaces.ITableFormLayer"
       />
+
+  <!-- form macros -->
   <z3c:macro
       name="form"
       template="table-form.pt"
@@ -29,6 +31,11 @@
   <z3c:macro
       name="subform"
       template="table-form.pt"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:macro
+      name="subform-display"
+      template="table-form-display.pt"
       layer=".interfaces.ITableFormLayer"
       />
   <z3c:macro
@@ -91,9 +98,38 @@
       template="table-form.pt"
       layer=".interfaces.ITableFormLayer"
       />
+
+  <!-- IContentTemplate -->
   <z3c:template
       template="table-form.pt"
       for="z3c.form.interfaces.IInputForm"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:template
+      template="table-form-display.pt"
+      for="z3c.form.interfaces.IDisplayForm"
+      layer=".interfaces.ITableFormLayer"
+      />
+
+  <!-- named IContentTemplate -->
+  <z3c:template
+      name="display"
+      template="table-form-display.pt"
+      for="z3c.form.interfaces.IForm"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:template
+      name="subform"
+      template="subform.pt"
+      for="z3c.form.interfaces.IForm"
+      layer=".interfaces.ITableFormLayer"
+      />
+
+  <!-- named ILayoutTemplate -->
+  <z3c:layout
+      name="subform"
+      template="subform-layout.pt"
+      for="z3c.form.interfaces.IForm"
       layer=".interfaces.ITableFormLayer"
       />
 

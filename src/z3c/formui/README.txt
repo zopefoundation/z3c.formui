@@ -316,8 +316,8 @@ Now our new request should know the table based form template:
 Form Macros
 -----------
 
-Try at least to load the confguration, which will make sure that all macros
-get registered correctly.
+Load the confguration, which will make sure that all macros get registered 
+correctly.
 
   >>> from zope.configuration import xmlconfig
   >>> import zope.component
@@ -335,11 +335,49 @@ get registered correctly.
   >>> xmlconfig.XMLConfig('meta.zcml', z3c.template)()
   >>> xmlconfig.XMLConfig('configure.zcml', z3c.formui)()
 
+Div IContentTemplate
+--------------------
+
+Create some dummy form discriminators for calling div layout templates and 
+macros and check the div IContentTemplates:
+
+  >>> objects = (addForm, divRequest)
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate).filename
+  '...div-form.pt'
+
+  >>> objects = (form.DisplayForm(None, None), divRequest) 
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate, '').filename
+  '...div-form-display.pt'
+
+We offer the following named IContentTemplate:
+
+  >>> objects = (form.DisplayForm(None, None), divRequest) 
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate, 
+  ...     'display').filename
+  '...div-form-display.pt'
+
+  >>> objects = (form.DisplayForm(None, None), divRequest) 
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate, 
+  ...     'subform').filename
+  '...subform.pt'
+
+
+Table ILayoutTemplate
+---------------------
+
+There is one generic layout template for build sub forms:
+
+  >>> objects = (form.DisplayForm(None, None), divRequest) 
+  >>> zope.component.getMultiAdapter(objects, ILayoutTemplate, 
+  ...     'subform').filename
+  '...subform-layout.pt'
+
 
 Div layout macros
 -----------------
 
-Now we can see that we have different form macros available:
+We have different form macros available for IInputForm:
+
 
   >>> from z3c.macro.interfaces import IMacroTemplate
   >>> objects = (None, addForm, divRequest)
@@ -383,8 +421,55 @@ Now we can see that we have different form macros available:
   [...div-form.pt'), ...define-macro', u'buttons'...
 
 
+And we have different form macros available for IDisplayForm:
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'subform-display')
+  [...div-form-display.pt'), ...define-macro': u'subform-display'...
+
+
+Table IContentTemplate
+----------------------
+
+Create some dummy form discriminators for calling table layout templates and 
+macros and check the div IContentTemplates:
+
+  >>> objects = (addForm, tableRequest)
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate, '').filename
+  '...table-form.pt'
+
+  >>> objects = (form.DisplayForm(None, None), tableRequest) 
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate, '').filename
+  '...table-form-display.pt'
+
+We offer the following named IContentTemplate:
+
+  >>> objects = (form.DisplayForm(None, None), tableRequest) 
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate, 
+  ...     'display').filename
+  '...table-form-display.pt'
+
+  >>> objects = (form.DisplayForm(None, None), tableRequest) 
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate, 
+  ...     'subform').filename
+  '...subform.pt'
+
+
+
+Table ILayoutTemplate
+---------------------
+
+There is one generic layout template for build sub forms:
+
+  >>> objects = (form.DisplayForm(None, None), tableRequest) 
+  >>> zope.component.getMultiAdapter(objects, ILayoutTemplate, 
+  ...     'subform').filename
+  '...subform-layout.pt'
+
+
 Table layout macros
 -------------------
+
+We have different form macros available for IInputForm:
 
   >>> objects = (None, addForm, tableRequest)
   >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form')
@@ -433,6 +518,176 @@ Table layout macros
 
   >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-buttons')
   [...table-form.pt'), ...define-macro', u'buttons'...
+
+
+And we have different form macros available for IDisplayForm:
+
+  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'subform-display')
+  [...table-form-display.pt'), ...define-macro': u'subform-display'...
+
+
+Subform
+-------
+
+Let's give a quick overview how subform content and layout template get used:
+First define a new form which uses the template getter method methods offered
+from z3.template
+
+  >>> from z3c.template.template import getPageTemplate
+  >>> from z3c.template.template import getLayoutTemplate
+
+We also need the provider TALES expression which is a part of the lookup
+concept:
+
+  >>> from zope.app.pagetemplate import metaconfigure
+  >>> from zope.contentprovider import tales
+  >>> metaconfigure.registerType('provider', tales.TALESProviderExpression)
+
+and the TALES expression called 创macro创 which can lookup our macro adapters.
+Yes, macros are adapters in our content/layout template concept. See z3c.macro
+form mor information about the implementation:
+
+  >>> from zope.app.pagetemplate import metaconfigure
+  >>> from z3c.macro import tales
+  >>> metaconfigure.registerType('macro', tales.MacroExpression)
+
+and at least we need a pagelet renderer. By default we use the provider called
+创PageletRenderer创 defined in the z3c.pagelet package. Bubt right now, we 
+don't have a dependency to this package. So let's implement a simple renderer
+and use them as a IContentProvider:
+
+  >>> class PageletRenderer(object):
+  ...     zope.component.adapts(zope.interface.Interface,
+  ...         zope.publisher.interfaces.browser.IBrowserRequest,
+  ...         zope.interface.Interface)
+  ... 
+  ...     def __init__(self, context, request, pagelet):
+  ...         self.__updated = False
+  ...         self.__parent__ = pagelet
+  ...         self.context = context
+  ...         self.request = request
+  ... 
+  ...     def update(self):
+  ...         pass
+  ... 
+  ...     def render(self):
+  ...         return self.__parent__.render()
+
+  >>> from zope.contentprovider.interfaces import IContentProvider
+  >>> zope.component.provideAdapter(PageletRenderer,
+  ...     provides=IContentProvider, name='pagelet')
+
+Now define the form:
+
+  >>> class PersonEditForm(form.EditForm):
+  ...     """Edit form including layout support. See z3c.formui.form."""
+  ... 
+  ...     template = getPageTemplate('subform')
+  ...     layout = getLayoutTemplate('subform')
+  ...
+  ...     fields = field.Fields(IPerson)
+
+Now we can render the form with our previous created person instance:
+
+  >>> person = Person(u'Jessy', 6)
+  >>> editForm = PersonEditForm(person, divRequest)
+
+Now we call the form which will update and render them:
+
+  >>> print editForm()
+  <div class="viewspace">
+    <div class="required-info">
+      <span class="required">*</span>
+      &ndash; required
+    </div>
+    <div>
+      <div id="form-widgets-name-row" class="row">
+        <div class="label">
+          <label for="form-widgets-name">
+            <span>Name</span>
+            <span class="required">*</span>
+          </label>
+        </div>
+        <div class="widget"><input type="text" id="form-widgets-name"
+             name="form.widgets.name"
+             class="text-widget required textline-field"
+             value="Jessy" />
+        </div>
+      </div>
+      <div id="form-widgets-age-row" class="row">
+        <div class="label">
+          <label for="form-widgets-age">
+            <span>Age</span>
+          </label>
+        </div>
+        <div class="widget"><input type="text" id="form-widgets-age"
+           name="form.widgets.age" class="text-widget int-field"
+           value="6" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="buttons">
+      <input type="submit" id="form-buttons-apply"
+             name="form.buttons.apply"
+             class="submit-widget button-field" value="Apply" />
+    </div>
+  </div>
+
+You can see that the form above is a realy subform. It doesn't define the form
+tag which makes it usable as a subform in parent forms.
+
+Of corse this works with table layout based forms too. Let's use our table
+request and render the form again:
+
+  >>> editForm = PersonEditForm(person, tableRequest)
+  >>> print editForm()
+  <div class="viewspace">
+    <div class="required-info">
+      <span class="required">*</span>
+      &ndash; required
+    </div>
+    <div>
+      <table class="form-fields">
+        <tr class="row">
+          <td class="label">
+            <label for="form-widgets-name">
+              <span>Name</span>
+              <span class="required"> * </span>
+            </label>
+          </td>
+          <td class="field">
+            <div class="widget"><input type="text" id="form-widgets-name"
+                 name="form.widgets.name"
+                 class="text-widget required textline-field"
+                 value="Jessy" />
+            </div>
+          </td>
+        </tr>
+        <tr class="row">
+          <td class="label">
+            <label for="form-widgets-age">
+              <span>Age</span>
+            </label>
+          </td>
+          <td class="field">
+            <div class="widget"><input type="text" id="form-widgets-age"
+                 name="form.widgets.age" class="text-widget int-field"
+                 value="6" />
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div>
+    <div class="buttons">
+      <input type="submit" id="form-buttons-apply"
+             name="form.buttons.apply"
+            class="submit-widget button-field" value="Apply" />
+    </div>
+  </div>
 
 
 Cleanup
