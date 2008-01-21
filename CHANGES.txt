@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-Version 1.4.0 (unreleased)
+Version 1.4.0 (2007-01-21)
 -------------------------
 
 - Bug: added missing display IContentTemplate, otherwise we can run into a 
