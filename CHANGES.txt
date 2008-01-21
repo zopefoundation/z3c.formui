@@ -8,8 +8,8 @@ Version 1.4.0 (2007-01-21)
 - Bug: added missing display IContentTemplate, otherwise we can run into a 
   recursion in some case
 
-- Bug: rename table macro argument from 创form-required-info创 to 
-  创required-info创. The macro 创form-required-info创 did not exist.
+- Bug: rename table macro argument from ``form-required-info`` to 
+  ``required-info``. The macro ``form-required-info`` did not exist.
 
 - Feature: Added subform content and layout template. This allows you to
   configure real sub forms which do not render the form tag for sub forms.
