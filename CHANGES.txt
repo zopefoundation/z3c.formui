@@ -2,41 +2,41 @@
 CHANGES
 =======
 
-Version 1.4.1dev (unreleased)
-----------------------------
+Version 1.4.1 (2008-01-23)
+--------------------------
 
-- ...
+- Fixed up meta-data and the release.
 
 
-Version 1.4.0 (2007-01-21)
--------------------------
-
-- Bug: added missing display IContentTemplate, otherwise we can run into a 
-  recursion in some case
-
-- Bug: rename table macro argument from ``form-required-info`` to 
-  ``required-info``. The macro ``form-required-info`` did not exist.
+Version 1.4.0 (2008-01-21)
+--------------------------
 
 - Feature: Added subform content and layout template. This allows you to
-  configure real sub forms which do not render the form tag for sub forms.
+  configure real sub forms which do not render the form tag.
 
-- Feature: Improve layout implementation, support built in layout templates
+- Feature: Improve layout implementation, support built-in layout templates.
 
-- Feature: Use IContentTemplate instead of IPageTemplate in layout base 
-  classes. This will help to prevent running into recursion errors if there 
-  is a missing layout template.
+- Feature: Use ``IContentTemplate`` instead of ``IPageTemplate`` in layout
+  base classes. This will help to prevent running into recursion errors if
+  there is a missing layout template.
 
-- Feature: Added form module which offers built in layout support.
+- Feature: Added form module which offers built-in layout support.
 
-- Added unittests for layout support
+- Bug: Added missing display ``IContentTemplate``, otherwise we can run into a
+  recursion in some cases.
 
-- Added tests for layout macros
+- Bug: Renamed table macro argument from ``form-required-info`` to
+  ``required-info``. The macro ``form-required-info`` did not exist.
 
-- Added tests for layout templates
+- Bug: Added unit tests for layout support.
+
+- Bug: Added tests for layout macros.
+
+- Bug: Added tests for layout templates.
 
 
-Version 1.3.0 (8/24/2007)
--------------------------
+Version 1.3.0 (2007-08-24)
+--------------------------
 
 - Refactoring: Update CSS classes to reflect latest changes to the widget
   classes in ``z3c.form``.
@@ -50,23 +50,23 @@ Version 1.3.0 (8/24/2007)
   Leist for the report.
 
 
-Version 1.2.0 (7/18/2007)
--------------------------
+Version 1.2.0 (2007-07-18)
+--------------------------
 
 - Feature: The row div element now also has an id of the form
   "<widget-id>-row".
 
 
-Version 1.1.1 (7/4/2007)
--------------------------
+Version 1.1.1 (2007-07-04)
+--------------------------
 
 - Refactoring: Split up registrations for simpler management of UI
   components. This also makes it easier to see for developers how to create a
   new template for forms.
 
 
-Version 1.1.0 (6/29/2007)
--------------------------
+Version 1.1.0 (2007-06-29)
+--------------------------
 
 - Feature: Registered all defined macros for each form template. Also, added
   more slots to the templates providing more hooks for customization.
@@ -79,15 +79,15 @@ Version 1.1.0 (6/29/2007)
 - Feature: Added support for groups to templates.
 
 
-Version 1.0.1 (6/22/2007)
--------------------------
+Version 1.0.1 (2007-06-22)
+--------------------------
 
 - Bug: Make sure we use the id for the "for" attribute of the "label"
   element and not the name. This has worked until recently, because the
   name and id were the same, but they are different now.
 
 
-Version 1.0.0 (5/24/2007)
--------------------------
+Version 1.0.0 (2007-05-24)
+--------------------------
 
 - Initial Release

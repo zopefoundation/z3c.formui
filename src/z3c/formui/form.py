@@ -29,7 +29,7 @@ applyChanges = form.applyChanges
 
 class ContentTemplateMixin(object):
     """Use IContentTemplate instead of IPageTemplate.
-    
+
     This prevents us running into a recusrion because of mess up layout and
     content templates. This is the default template interface if you use the
     z3c.template directive.

@@ -40,7 +40,7 @@ Before we can start writing forms, we must have the content to work with:
   >>> from zope.schema.fieldproperty import FieldProperty
   >>> class Person(object):
   ...     zope.interface.implements(IPerson)
-  ... 
+  ...
   ...     name = FieldProperty(IPerson['name'])
   ...     age = FieldProperty(IPerson['age'])
   ...
@@ -83,7 +83,7 @@ Now create the form:
 
   >>> addForm = PersonAddForm(root, divRequest)
 
-Since we have not specified a template yet, we have to do this now. We use our 
+Since we have not specified a template yet, we have to do this now. We use our
 div based form template:
 
   >>> import os
@@ -103,7 +103,7 @@ Now register the form (content) template:
   ...     (zope.interface.Interface, IDivFormLayer),
   ...     IContentTemplate)
 
-And let's define a layout template which simply calls the render method. For a 
+And let's define a layout template which simply calls the render method. For a
 more adavanced content/layout render concept see z3c.pagelet.
 
   >>> import tempfile
@@ -316,7 +316,7 @@ Now our new request should know the table based form template:
 Form Macros
 -----------
 
-Load the confguration, which will make sure that all macros get registered 
+Load the confguration, which will make sure that all macros get registered
 correctly.
 
   >>> from zope.configuration import xmlconfig
@@ -338,26 +338,26 @@ correctly.
 Div IContentTemplate
 --------------------
 
-Create some dummy form discriminators for calling div layout templates and 
+Create some dummy form discriminators for calling div layout templates and
 macros and check the div IContentTemplates:
 
   >>> objects = (addForm, divRequest)
   >>> zope.component.getMultiAdapter(objects, IContentTemplate).filename
   '...div-form.pt'
 
-  >>> objects = (form.DisplayForm(None, None), divRequest) 
+  >>> objects = (form.DisplayForm(None, None), divRequest)
   >>> zope.component.getMultiAdapter(objects, IContentTemplate, '').filename
   '...div-form-display.pt'
 
 We offer the following named IContentTemplate:
 
-  >>> objects = (form.DisplayForm(None, None), divRequest) 
-  >>> zope.component.getMultiAdapter(objects, IContentTemplate, 
+  >>> objects = (form.DisplayForm(None, None), divRequest)
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate,
   ...     'display').filename
   '...div-form-display.pt'
 
-  >>> objects = (form.DisplayForm(None, None), divRequest) 
-  >>> zope.component.getMultiAdapter(objects, IContentTemplate, 
+  >>> objects = (form.DisplayForm(None, None), divRequest)
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate,
   ...     'subform').filename
   '...subform.pt'
 
@@ -367,8 +367,8 @@ Table ILayoutTemplate
 
 There is one generic layout template for build sub forms:
 
-  >>> objects = (form.DisplayForm(None, None), divRequest) 
-  >>> zope.component.getMultiAdapter(objects, ILayoutTemplate, 
+  >>> objects = (form.DisplayForm(None, None), divRequest)
+  >>> zope.component.getMultiAdapter(objects, ILayoutTemplate,
   ...     'subform').filename
   '...subform-layout.pt'
 
@@ -430,26 +430,26 @@ And we have different form macros available for IDisplayForm:
 Table IContentTemplate
 ----------------------
 
-Create some dummy form discriminators for calling table layout templates and 
+Create some dummy form discriminators for calling table layout templates and
 macros and check the div IContentTemplates:
 
   >>> objects = (addForm, tableRequest)
   >>> zope.component.getMultiAdapter(objects, IContentTemplate, '').filename
   '...table-form.pt'
 
-  >>> objects = (form.DisplayForm(None, None), tableRequest) 
+  >>> objects = (form.DisplayForm(None, None), tableRequest)
   >>> zope.component.getMultiAdapter(objects, IContentTemplate, '').filename
   '...table-form-display.pt'
 
 We offer the following named IContentTemplate:
 
-  >>> objects = (form.DisplayForm(None, None), tableRequest) 
-  >>> zope.component.getMultiAdapter(objects, IContentTemplate, 
+  >>> objects = (form.DisplayForm(None, None), tableRequest)
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate,
   ...     'display').filename
   '...table-form-display.pt'
 
-  >>> objects = (form.DisplayForm(None, None), tableRequest) 
-  >>> zope.component.getMultiAdapter(objects, IContentTemplate, 
+  >>> objects = (form.DisplayForm(None, None), tableRequest)
+  >>> zope.component.getMultiAdapter(objects, IContentTemplate,
   ...     'subform').filename
   '...subform.pt'
 
@@ -460,8 +460,8 @@ Table ILayoutTemplate
 
 There is one generic layout template for build sub forms:
 
-  >>> objects = (form.DisplayForm(None, None), tableRequest) 
-  >>> zope.component.getMultiAdapter(objects, ILayoutTemplate, 
+  >>> objects = (form.DisplayForm(None, None), tableRequest)
+  >>> zope.component.getMultiAdapter(objects, ILayoutTemplate,
   ...     'subform').filename
   '...subform-layout.pt'
 
@@ -552,7 +552,7 @@ form mor information about the implementation:
   >>> metaconfigure.registerType('macro', tales.MacroExpression)
 
 and at least we need a pagelet renderer. By default we use the provider called
-´´PageletRenderer´´ defined in the z3c.pagelet package. Bubt right now, we 
+``PageletRenderer`` defined in the z3c.pagelet package. Bubt right now, we
 don't have a dependency to this package. So let's implement a simple renderer
 and use them as a IContentProvider:
 
@@ -560,16 +560,16 @@ and use them as a IContentProvider:
   ...     zope.component.adapts(zope.interface.Interface,
   ...         zope.publisher.interfaces.browser.IBrowserRequest,
   ...         zope.interface.Interface)
-  ... 
+  ...
   ...     def __init__(self, context, request, pagelet):
   ...         self.__updated = False
   ...         self.__parent__ = pagelet
   ...         self.context = context
   ...         self.request = request
-  ... 
+  ...
   ...     def update(self):
   ...         pass
-  ... 
+  ...
   ...     def render(self):
   ...         return self.__parent__.render()
 
@@ -581,7 +581,7 @@ Now define the form:
 
   >>> class PersonEditForm(form.EditForm):
   ...     """Edit form including layout support. See z3c.formui.form."""
-  ... 
+  ...
   ...     template = getPageTemplate('subform')
   ...     layout = getLayoutTemplate('subform')
   ...
