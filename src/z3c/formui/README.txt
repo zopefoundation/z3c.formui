@@ -7,14 +7,14 @@ This package provides several useful templates to get a quick start with the
 templates that were implemented in a particular user-interface development
 pattern. If you wanted to use an alternative strategy to develop user
 interfaces, it was often tedious to do so. This package aims to provide some
-options without requireing them for the basic framework.
+options without requiring them for the basic framework.
 
 
 Layout Template Support
 -----------------------
 
 One common pattern in Zope 3 user interface development is the use of layout
-templates. This package provides some mixin classes to the regular form
+templates (see z3c.template). This package provides some mixin classes to the regular form
 classes to support layout-based templating.
 
   >>> from z3c.form import testing
@@ -104,7 +104,7 @@ Now register the form (content) template:
   ...     IContentTemplate)
 
 And let's define a layout template which simply calls the render method. For a
-more adavanced content/layout render concept see z3c.pagelet.
+more advanced content/layout render concept see z3c.pagelet.
 
   >>> import tempfile
   >>> temp_dir = tempfile.mkdtemp()
@@ -365,7 +365,7 @@ We offer the following named IContentTemplate:
 Table ILayoutTemplate
 ---------------------
 
-There is one generic layout template for build sub forms:
+There is one generic layout template to build sub forms:
 
   >>> objects = (form.DisplayForm(None, None), divRequest)
   >>> zope.component.getMultiAdapter(objects, ILayoutTemplate,
@@ -458,7 +458,7 @@ We offer the following named IContentTemplate:
 Table ILayoutTemplate
 ---------------------
 
-There is one generic layout template for build sub forms:
+There is one generic layout template to build sub forms:
 
   >>> objects = (form.DisplayForm(None, None), tableRequest)
   >>> zope.component.getMultiAdapter(objects, ILayoutTemplate,
@@ -529,8 +529,8 @@ And we have different form macros available for IDisplayForm:
 Subform
 -------
 
-Let's give a quick overview how subform content and layout template get used:
-First define a new form which uses the template getter method methods offered
+Let's give a quick overview how subform content and layout templates get used:
+First define a new form which uses the template getter methods offered
 from z3.template
 
   >>> from z3c.template.template import getPageTemplate
@@ -545,15 +545,15 @@ concept:
 
 and the TALES expression called ``macro`` which can lookup our macro adapters.
 Yes, macros are adapters in our content/layout template concept. See z3c.macro
-form mor information about the implementation:
+for more information about the implementation:
 
   >>> from zope.app.pagetemplate import metaconfigure
   >>> from z3c.macro import tales
   >>> metaconfigure.registerType('macro', tales.MacroExpression)
 
 and at least we need a pagelet renderer. By default we use the provider called
-``PageletRenderer`` defined in the z3c.pagelet package. Bubt right now, we
-don't have a dependency to this package. So let's implement a simple renderer
+``PageletRenderer`` defined in the z3c.pagelet package. But right now, we
+don't have a dependency on this package. So let's implement a simple renderer
 and use them as a IContentProvider:
 
   >>> class PageletRenderer(object):
@@ -592,7 +592,7 @@ Now we can render the form with our previous created person instance:
   >>> person = Person(u'Jessy', 6)
   >>> editForm = PersonEditForm(person, divRequest)
 
-Now we call the form which will update and render them:
+Now we call the form which will update and render it:
 
   >>> print editForm()
   <div class="viewspace">
@@ -635,10 +635,10 @@ Now we call the form which will update and render them:
     </div>
   </div>
 
-You can see that the form above is a realy subform. It doesn't define the form
+You can see that the form above is a real subform. It doesn't define the form
 tag which makes it usable as a subform in parent forms.
 
-Of corse this works with table layout based forms too. Let's use our table
+Of course this works with table layout based forms too. Let's use our table
 request and render the form again:
 
   >>> editForm = PersonEditForm(person, tableRequest)
