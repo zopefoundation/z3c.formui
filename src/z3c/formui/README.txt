@@ -543,7 +543,7 @@ concept:
   >>> from zope.contentprovider import tales
   >>> metaconfigure.registerType('provider', tales.TALESProviderExpression)
 
-and the TALES expression called ´´macro´´ which can lookup our macro adapters.
+and the TALES expression called ``macro`` which can lookup our macro adapters.
 Yes, macros are adapters in our content/layout template concept. See z3c.macro
 form mor information about the implementation:
 
