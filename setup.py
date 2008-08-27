@@ -26,7 +26,7 @@ def read(*rnames):
 
 setup (
     name='z3c.formui',
-    version='1.4.2',
+    version='1.4.3dev',
     author = "Stephan Richter, Roger Ineichen and the Zope Community",
     author_email = "zope-dev@zope.org",
     description = "A set of initial UI components for z3c.form.",
