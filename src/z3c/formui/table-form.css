@@ -88,3 +88,33 @@ textarea.textarea-widget {
 div.buttons {
     padding: 10px 0px 10px 0px;
 }
+
+
+/*---[ multi widget ]--------------------------------------------------------*/
+
+div.multi-widget div.multi-widget-checkbox {
+    float: left
+}
+
+div.multi-widget div.label {
+    margin: 0px;
+    padding: 0px;
+    padding: 0px 0px 00px 20px;
+}
+
+div.multi-widget input.password-widget {
+    width: 280px;
+}
+
+div.multi-widget input.text-widget {
+    width: 280px;
+}
+
+div.multi-widget textarea.textarea-widget {
+    width: 280px;
+    height: 100px;
+}
+
+div.multi-widget div.buttons {
+    padding: 0px 0px 10px 20px;
+}
