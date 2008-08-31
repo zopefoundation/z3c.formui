@@ -2,10 +2,12 @@
 CHANGES
 =======
 
-Version 1.4.3dev (unreleased)
------------------------------
+Version 1.5.0 (2008-??-??)
+--------------------------
 
-- Feature: Added CSS for multi-widget which was added in z3c.form version 1.9.1
+- Feature: Added layout support for ``IAdding`` component based add forms.
+
+- Feature: Added CSS for multi-widget which was added in `z3c.form` 2.0.0
 
 
 Version 1.4.2 (2008-08-26)

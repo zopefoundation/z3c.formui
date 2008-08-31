@@ -14,8 +14,8 @@ Layout Template Support
 -----------------------
 
 One common pattern in Zope 3 user interface development is the use of layout
-templates (see z3c.template). This package provides some mixin classes to the regular form
-classes to support layout-based templating.
+templates (see z3c.template). This package provides some mixin classes to the
+regular form classes to support layout-based templating.
 
   >>> from z3c.form import testing
   >>> testing.setupFormDefaults()
@@ -313,6 +313,162 @@ Now our new request should know the table based form template:
   </html>
 
 
+`AddForm` rendering for `IAdding`
+---------------------------------
+
+The `z3c.formui` package also provides a layout-aware version of
+`z3c.form.adding.AddForm` which can be used for creating forms for the
+`zope.app.container.interfaces.IAdding` mechanism.
+
+Let's check its template support. First, create the form for an `Adding`
+instance. We just need to define the ``create()`` method, because the default
+``add()`` and ``nextURL()`` methods are already defined using the `Adding`
+object.
+
+  >>> from z3c.formui import adding
+  >>> class AddingPersonAddForm(adding.AddForm):
+  ...
+  ...     fields = field.Fields(IPerson)
+  ...
+  ...     def create(self, data):
+  ...         return Person(**data)
+
+
+Let's now instantiate the adding component and isntantiate the add form:
+
+  >>> from zope.app.container.browser.adding import Adding
+  >>> rootAdding = Adding(root, divRequest)
+
+  >>> addForm = AddingPersonAddForm(rootAdding, divRequest)
+
+First, let's ensure that we can lookup a layout template for the form:
+
+  >>> layout = zope.component.getMultiAdapter(
+  ...     (addForm, divRequest), ILayoutTemplate)
+
+  >>> layout
+  <zope.app.pagetemplate.viewpagetemplatefile.ViewPageTemplateFile ...>
+
+Okay, that worked. Let's now render the div-based addform:
+
+  >>> print addForm()
+  <html>
+    <body>
+      <form action="http://127.0.0.1" method="post"
+        enctype="multipart/form-data" class="edit-form"
+        name="form" id="form">
+        <div class="viewspace">
+          <div class="required-info">
+            <span class="required">*</span>
+            &ndash; required
+          </div>
+          <div>
+            <div id="form-widgets-name-row" class="row">
+              <div class="label">
+                <label for="form-widgets-name">
+                  <span>Name</span>
+                  <span class="required">*</span>
+                </label>
+              </div>
+              <div class="widget"><input type="text" id="form-widgets-name"
+                   name="form.widgets.name"
+                   class="text-widget required textline-field" value="" />
+              </div>
+            </div>
+            <div id="form-widgets-age-row" class="row">
+              <div class="label">
+                <label for="form-widgets-age">
+                  <span>Age</span>
+                </label>
+              </div>
+              <div class="widget"><input type="text" id="form-widgets-age"
+                   name="form.widgets.age" class="text-widget int-field"
+                   value="20" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="buttons">
+            <input type="submit" id="form-buttons-add"
+             name="form.buttons.add"
+             class="submit-widget button-field" value="Add" />
+          </div>
+        </div>
+      </form>
+    </body>
+  </html>
+
+Okay, now we are going to check table layout support.
+
+  >>> rootAdding = Adding(root, tableRequest)
+  >>> addForm = AddingPersonAddForm(rootAdding, tableRequest)
+
+Again, the layout should be available:
+
+  >>> layout = zope.component.getMultiAdapter((addForm, tableRequest),
+  ...     ILayoutTemplate)
+
+  >>> layout
+  <zope.app.pagetemplate.viewpagetemplatefile.ViewPageTemplateFile ...>
+
+Let's now render the form:
+
+  >>> print addForm()
+  <html>
+    <body>
+      <form action="http://127.0.0.1" method="post"
+        enctype="multipart/form-data" class="edit-form"
+        name="form" id="form">
+        <div class="viewspace">
+          <div class="required-info">
+            <span class="required">*</span>
+            &ndash; required
+          </div>
+          <div>
+          <table class="form-fields">
+                <tr class="row">
+                  <td class="label">
+                    <label for="form-widgets-name">
+                      <span>Name</span>
+                      <span class="required"> * </span>
+                    </label>
+                  </td>
+                  <td class="field">
+                    <div class="widget"><input type="text" id="form-widgets-name"
+                         name="form.widgets.name"
+                         class="text-widget required textline-field" value="" />
+                    </div>
+                  </td>
+                </tr>
+                <tr class="row">
+                  <td class="label">
+                    <label for="form-widgets-age">
+                      <span>Age</span>
+                    </label>
+                  </td>
+                  <td class="field">
+                    <div class="widget"><input type="text" id="form-widgets-age"
+                         name="form.widgets.age" class="text-widget int-field"
+                         value="20" />
+                    </div>
+                  </td>
+                </tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="buttons">
+          <input type="submit" id="form-buttons-add"
+         name="form.buttons.add"
+         class="submit-widget button-field" value="Add" />
+        </div>
+      </div>
+      </form>
+    </body>
+  </html>
+
+
 Form Macros
 -----------
 
@@ -393,7 +549,8 @@ We have different form macros available for IInputForm:
   [...div-form.pt'), ...define-macro': u'label'...
 
 
-  >>> zope.component.getMultiAdapter(objects, IMacroTemplate, 'form-required-info')
+  >>> zope.component.getMultiAdapter(
+  ...     objects, IMacroTemplate, 'form-required-info')
   [...div-form.pt'), ...define-macro', u'required-info'...
 
 
