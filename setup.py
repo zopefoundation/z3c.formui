@@ -58,7 +58,7 @@ setup (
     package_dir = {'':'src'},
     namespace_packages = ['z3c'],
     extras_require = dict(
-        test = ['zope.testing'],
+        test = ['zope.testing', 'z3c.form [test]'],
         ),
     install_requires = [
         'setuptools',
@@ -69,6 +69,5 @@ setup (
         'zope.publisher',
         'zope.viewlet',
         ],
-    dependency_links = ['http://download.zope.org/distribution'],
     zip_safe = False,
     )

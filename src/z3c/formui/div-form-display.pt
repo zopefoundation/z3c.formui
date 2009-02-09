@@ -40,11 +40,11 @@
           <metal:block define-slot="group-header">
             <div class="status"
                  tal:condition="view/widgets/errors">
-              <div metal:use-macro="template/macros/errors" />
+              <div metal:use-macro="macro:form-errors" />
             </div>
           </metal:block>
           <metal:block define-slot="group-rows">
-            <div metal:use-macro="template/macros/widget-rows" />
+            <div metal:use-macro="macro:widget-rows" />
           </metal:block>
         </fieldset>
       </metal:block>

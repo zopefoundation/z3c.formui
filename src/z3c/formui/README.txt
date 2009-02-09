@@ -702,16 +702,15 @@ concept:
 
 and the TALES expression called ``macro`` which can lookup our macro adapters.
 Yes, macros are adapters in our content/layout template concept. See z3c.macro
-for more information about the implementation:
+for more information about the implementation. However, we already registered
+the ``macro`` type in the testing setup, as it's needed for rendering form
+templates.
 
-  >>> from zope.app.pagetemplate import metaconfigure
-  >>> from z3c.macro import tales
-  >>> metaconfigure.registerType('macro', tales.MacroExpression)
-
-and at least we need a pagelet renderer. By default we use the provider called
-``PageletRenderer`` defined in the z3c.pagelet package. But right now, we
-don't have a dependency on this package. So let's implement a simple renderer
-and use them as a IContentProvider:
+and at least we need a pagelet
+renderer. By default we use the provider called ``PageletRenderer`` defined
+in the z3c.pagelet package. But right now, we don't have a dependency on
+this package. So let's implement a simple renderer and use them as a
+IContentProvider:
 
   >>> class PageletRenderer(object):
   ...     zope.component.adapts(zope.interface.Interface,

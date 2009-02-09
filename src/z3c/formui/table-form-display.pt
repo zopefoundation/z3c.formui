@@ -52,7 +52,7 @@
           <metal:block define-slot="group-header">
           </metal:block>
           <metal:block define-slot="group-rows">
-            <div metal:use-macro="template/macros/formtable" />
+            <div metal:use-macro="macro:form-table" />
           </metal:block>
         </fieldset>
       </metal:block>
