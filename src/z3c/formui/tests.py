@@ -18,19 +18,27 @@ __docformat__ = "reStructuredText"
 
 import unittest
 from zope.testing import doctest
-from zope.app.pagetemplate.metaconfigure import registerType
-from z3c.macro.tales import MacroExpression
 
 from z3c.form import testing
 
-def setUp(test):
-    testing.setUp(test)
+def setUpZPT(test):
+    testing.setUpZPT(test)
+    from zope.app.pagetemplate.metaconfigure import registerType
+    from zope.contentprovider.tales import TALESProviderExpression
+    from z3c.macro.tales import MacroExpression
     registerType('macro', MacroExpression)
+    registerType('provider', TALESProviderExpression)
+
+def setUpZ3CPT(test):
+    testing.setUpZ3CPT(test)
+    from zope.component import provideUtility
+    from z3c.macro.tales import z3cpt_macro_expression
+    provideUtility(z3cpt_macro_expression, name='macro')
 
 def test_suite():
-    return unittest.TestSuite((
+    return unittest.TestSuite([
         doctest.DocFileSuite('README.txt',
             setUp=setUp, tearDown=testing.tearDown,
             optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
-            checker=testing.OutputChecker()),
-        ))
+            checker=testing.OutputChecker(doctest))
+        for setUp in (setUpZPT, setUpZ3CPT)])

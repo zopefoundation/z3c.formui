@@ -128,8 +128,9 @@ Now we can get our layout template:
   >>> layout = zope.component.getMultiAdapter((addForm, divRequest),
   ...     ILayoutTemplate)
 
-  >>> layout
-  <zope.app.pagetemplate.viewpagetemplatefile.ViewPageTemplateFile object at ...>
+  >>> from z3c import ptcompat
+  >>> isinstance(layout, ptcompat.ViewPageTemplateFile)
+  True
 
 
 DIV-based Layout
@@ -346,8 +347,8 @@ First, let's ensure that we can lookup a layout template for the form:
   >>> layout = zope.component.getMultiAdapter(
   ...     (addForm, divRequest), ILayoutTemplate)
 
-  >>> layout
-  <zope.app.pagetemplate.viewpagetemplatefile.ViewPageTemplateFile ...>
+  >>> isinstance(layout, ptcompat.ViewPageTemplateFile)
+  True
 
 Okay, that worked. Let's now render the div-based addform:
 
@@ -409,8 +410,8 @@ Again, the layout should be available:
   >>> layout = zope.component.getMultiAdapter((addForm, tableRequest),
   ...     ILayoutTemplate)
 
-  >>> layout
-  <zope.app.pagetemplate.viewpagetemplatefile.ViewPageTemplateFile ...>
+  >>> isinstance(layout, ptcompat.ViewPageTemplateFile)
+  True
 
 Let's now render the form:
 
@@ -693,12 +694,9 @@ from z3.template
   >>> from z3c.template.template import getPageTemplate
   >>> from z3c.template.template import getLayoutTemplate
 
-We also need the provider TALES expression which is a part of the lookup
-concept:
-
-  >>> from zope.app.pagetemplate import metaconfigure
-  >>> from zope.contentprovider import tales
-  >>> metaconfigure.registerType('provider', tales.TALESProviderExpression)
+The ``provider`` TALES expression which is a part of the lookup concept
+was already registered by the testing setup, so we don't need to do it
+here.
 
 and the TALES expression called ``macro`` which can lookup our macro adapters.
 Yes, macros are adapters in our content/layout template concept. See z3c.macro

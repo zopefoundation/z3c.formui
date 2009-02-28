@@ -5,6 +5,9 @@ CHANGES
 1.5.0 (unreleased)
 ------------------
 
+- Feature: Added support for ``z3c.pt`` tempaltes using ``z3c.ptcompat``
+  compatibility package.
+
 - Feature: Added layout support for ``IAdding`` component based add forms.
 
 - Feature: Added CSS for multi-widget which was added in `z3c.form` 2.0.0
