@@ -16,6 +16,14 @@ CHANGES
   one doesn't work when we override a form template and use the form macro,
   registered with this package.
 
+- Don't do rendering in form's __call__ method when request is a
+  redirection.
+
+- Added missing test dependency to ``z3c.ptcompat [test]``.
+
+- Reformatted long-description to render properly on pypi.
+
+
 1.4.2 (2008-08-26)
 ------------------
 

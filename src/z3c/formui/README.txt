@@ -473,8 +473,8 @@ Let's now render the form:
 Form Macros
 -----------
 
-Load the confguration, which will make sure that all macros get registered
-correctly.
+Load the configuration, which will make sure that all macros get registered
+correctly:
 
   >>> from zope.configuration import xmlconfig
   >>> import zope.component
@@ -843,6 +843,29 @@ request and render the form again:
     </div>
   </div>
 
+Redirection
+-----------
+
+ The form doesn't bother rendering itself and its layout when
+ request is a redirection as the rendering doesn't make any sense with
+ browser requests in that case. Let's create a view that does a
+ redirection in its update method:
+
+   >>> class RedirectingView(PersonEditForm):
+   ...     def update(self):
+   ...         super(RedirectingView, self).update()
+   ...         self.request.response.redirect('http://www.google.com/')
+
+   It will return an empty string when called as a browser page.
+
+   >>> redirectView = RedirectingView(person, divRequest)
+   >>> redirectView() == ''
+   True
+
+   However, the ``render`` method will render form's template as usual:
+
+   >>> '<div class="viewspace">' in redirectView.render()
+   True
 
 Cleanup
 -------
