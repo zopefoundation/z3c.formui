@@ -129,7 +129,7 @@ Now we can get our layout template:
   ...     ILayoutTemplate)
 
   >>> layout
-  <zope.app.pagetemplate.viewpagetemplatefile.ViewPageTemplateFile object at ...>
+  <z3c.ptcompat.ViewPageTemplateFile object at ...>
 
 
 DIV-based Layout

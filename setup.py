@@ -16,25 +16,21 @@
 $Id$
 """
 import os
-import xml.sax.saxutils
 from setuptools import setup, find_packages
 
 def read(*rnames):
-    text = open(os.path.join(os.path.dirname(__file__), *rnames)).read()
-    text = unicode(text, 'latin-1').encode('ascii', 'xmlcharrefreplace')
-    return xml.sax.saxutils.escape(text)
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup (
     name='z3c.formui',
-    version='1.4.2',
+    version='1.4.3dev',
     author = "Stephan Richter, Roger Ineichen and the Zope Community",
     author_email = "zope-dev@zope.org",
     description = "A set of initial UI components for z3c.form.",
     long_description=(
         read('README.txt')
         + '\n\n' +
-        'Detailed Documentation\n'
-        '**********************'
+        '.. contents::'
         + '\n\n' +
         read('src', 'z3c', 'formui', 'README.txt')
         + '\n\n' +
@@ -58,7 +54,8 @@ setup (
     package_dir = {'':'src'},
     namespace_packages = ['z3c'],
     extras_require = dict(
-        test = ['zope.testing'],
+        test = ['zope.app.testing',
+                'z3c.ptcompat [test]'],
         ),
     install_requires = [
         'setuptools',
