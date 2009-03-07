@@ -5,6 +5,9 @@ CHANGES
 1.4.3 (unreleased)
 ------------------
 
+- Don't do rendering in form's __call__ method when request is a
+  redirection.
+
 - Added missing test dependency to ``z3c.ptcompat [test]``.
 
 - Fixed tests, so they work together with the current version of
