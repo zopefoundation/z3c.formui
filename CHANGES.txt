@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-1.4.3 (unreleased)
+1.4.3 (2009-03-07)
 ------------------
 
 - Don't do rendering in form's __call__ method when request is a
