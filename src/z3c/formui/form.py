@@ -39,8 +39,12 @@ class ContentTemplateMixin(object):
         '''See interfaces.IForm'''
         # render content template
         if self.template is None:
-            template = zope.component.getMultiAdapter((self, self.request),
+            template = zope.component.queryMultiAdapter(
+                (self, self.request, self.context),
                 IContentTemplate)
+            if template is None:
+                template = zope.component.getMultiAdapter(
+                    (self, self.request), IContentTemplate)
             return template(self)
         return self.template()
 

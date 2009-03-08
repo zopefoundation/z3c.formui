@@ -37,8 +37,12 @@ class FormLayoutSupport(object):
             return ''
 
         if self.layout is None:
-            layout = zope.component.getMultiAdapter((self, self.request),
+            layout = zope.component.queryMultiAdapter(
+                (self, self.request, self.context),
                 ILayoutTemplate)
+            if layout is None:
+                layout = zope.component.getMultiAdapter(
+                    (self, self.request), ILayoutTemplate)
             return layout(self)
         return self.layout()
 
@@ -55,7 +59,11 @@ class AddFormLayoutSupport(object):
             return ''
 
         if self.layout is None:
-            layout = zope.component.getMultiAdapter((self, self.request),
+            layout = zope.component.queryMultiAdapter(
+                (self, self.request, self.context),
                 ILayoutTemplate)
+            if layout is None:
+                layout = zope.component.getMultiAdapter(
+                    (self, self.request), ILayoutTemplate)
             return layout(self)
         return self.layout()

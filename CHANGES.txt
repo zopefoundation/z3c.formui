@@ -5,6 +5,10 @@ CHANGES
 1.5.0 (unreleased)
 ------------------
 
+- Feature: Added support for context-specific template lookup,
+  introduced in z3c.template 1.2.0 - templates can now be registered
+  using (view, request, context) discriminator.
+
 - Feature: Added support for ``z3c.pt`` templates using ``z3c.ptcompat``
   compatibility package.
 
