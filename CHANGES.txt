@@ -5,7 +5,7 @@ CHANGES
 1.5.0 (unreleased)
 ------------------
 
-- Feature: Added support for ``z3c.pt`` tempaltes using ``z3c.ptcompat``
+- Feature: Added support for ``z3c.pt`` templates using ``z3c.ptcompat``
   compatibility package.
 
 - Feature: Added layout support for ``IAdding`` component based add forms.
@@ -18,8 +18,6 @@ CHANGES
 
 - Don't do rendering in form's __call__ method when request is a
   redirection.
-
-- Added missing test dependency to ``z3c.ptcompat [test]``.
 
 - Reformatted long-description to render properly on pypi.
 
