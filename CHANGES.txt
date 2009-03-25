@@ -5,25 +5,25 @@ CHANGES
 1.5.0 (unreleased)
 ------------------
 
-- Feature: Added support for context-specific template lookup,
-  introduced in z3c.template 1.2.0 - templates can now be registered
-  using (view, request, context) discriminator.
+- Feature: Added support for context-specific template lookup, introduced in
+  `z3c.template` 1.2.0 - templates can now be registered using (view, request,
+  context) discriminator.
 
-- Feature: Added support for ``z3c.pt`` templates using ``z3c.ptcompat``
+- Feature: Added support for `z3c.pt` templates using `z3c.ptcompat`
   compatibility package.
 
-- Feature: Added layout support for ``IAdding`` component based add forms.
+- Feature: Added layout support for `IAdding` component based add forms.
 
-- Feature: Added CSS for multi-widget which was added in `z3c.form` 2.0.0
+- Feature: Added CSS for multi-widget which was added in `z3c.form` 2.0.0.
 
-- Bug: Changed usage of "template/macros/*" to "macro:*, because the first
-  one doesn't work when we override a form template and use the form macro,
-  registered with this package.
+- Bug: Changed usage of ``template/macros/*`` to ``macro:*``, because the
+  first one doesn't work when we override a form template and use the form
+  macro, registered with this package.
 
-- Don't do rendering in form's __call__ method when request is a
+- Bug: Don't do rendering in form's `__call__` method when request is a
   redirection.
 
-- Reformatted long-description to render properly on pypi.
+- Bug: Reformatted long-description to render properly on pypi.
 
 
 1.4.2 (2008-08-26)
@@ -35,7 +35,7 @@ CHANGES
 1.4.1 (2008-01-23)
 ------------------
 
-- Fixed up meta-data and the release.
+- Bug: Fixed up meta-data and the release.
 
 
 1.4.0 (2008-01-21)
