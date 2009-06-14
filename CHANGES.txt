@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-1.5.0 (unreleased)
+2.0.0 (2009-06-14)
 ------------------
 
 - Feature: Added support for context-specific template lookup, introduced in
