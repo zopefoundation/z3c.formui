@@ -5,7 +5,7 @@ CHANGES
 2.1.0 (unreleased)
 ------------------
 
-- ...
+- Don't show required info hint if there's no required fields.
 
 2.0.0 (2009-06-14)
 ------------------

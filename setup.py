@@ -58,7 +58,7 @@ setup (
         ),
     install_requires = [
         'setuptools',
-        'z3c.form',
+        'z3c.form>=2.0',
         'z3c.macro',
         'z3c.template',
         'zope.component',

@@ -846,26 +846,51 @@ request and render the form again:
 Redirection
 -----------
 
- The form doesn't bother rendering itself and its layout when
- request is a redirection as the rendering doesn't make any sense with
- browser requests in that case. Let's create a view that does a
- redirection in its update method:
+The form doesn't bother rendering itself and its layout when
+request is a redirection as the rendering doesn't make any sense with
+browser requests in that case. Let's create a view that does a
+redirection in its update method:
 
-   >>> class RedirectingView(PersonEditForm):
-   ...     def update(self):
-   ...         super(RedirectingView, self).update()
-   ...         self.request.response.redirect('http://www.google.com/')
+ >>> class RedirectingView(PersonEditForm):
+ ...     def update(self):
+ ...         super(RedirectingView, self).update()
+ ...         self.request.response.redirect('http://www.google.com/')
 
-   It will return an empty string when called as a browser page.
+It will return an empty string when called as a browser page.
 
-   >>> redirectView = RedirectingView(person, divRequest)
-   >>> redirectView() == ''
-   True
+ >>> redirectView = RedirectingView(person, divRequest)
+ >>> redirectView() == ''
+ True
 
-   However, the ``render`` method will render form's template as usual:
+However, the ``render`` method will render form's template as usual:
 
-   >>> '<div class="viewspace">' in redirectView.render()
-   True
+ >>> '<div class="viewspace">' in redirectView.render()
+ True
+
+No required fields
+------------------
+
+If there no required fields in the form, standard templates won't render
+the "required-info" hint.
+
+  >>> class IAdditionalInfo(zope.interface.Interface):
+  ...
+  ...     location = zope.schema.TextLine(title=u'Location', required=False)
+  ...     about = zope.schema.Text(title=u'About', required=False)  
+
+  >>> class AdditionalInfoForm(form.AddForm):
+  ...
+  ...     fields = field.Fields(IAdditionalInfo)
+  
+  >>> additionalInfoForm = AdditionalInfoForm(root, divRequest)
+  >>> additionalInfoForm.update()
+  >>> '<div class="required-info">' in additionalInfoForm.render()
+  False
+
+  >>> additionalInfoForm = AdditionalInfoForm(root, tableRequest)
+  >>> additionalInfoForm.update()
+  >>> '<div class="required-info">' in additionalInfoForm.render()
+  False
 
 Cleanup
 -------
