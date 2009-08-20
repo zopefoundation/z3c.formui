@@ -5,7 +5,9 @@ CHANGES
 2.1.0 (unreleased)
 ------------------
 
-- Don't show required info hint if there's no required fields.
+- Feature: Don't show required info hint if there's no required fields.
+
+- Bug: Don't render add forms when redirecting as well.
 
 2.0.0 (2009-06-14)
 ------------------

@@ -58,6 +58,10 @@ class AddFormLayoutSupport(object):
             self.request.response.redirect(self.nextURL())
             return ''
 
+        if self.request.response.getStatus() in REDIRECT_STATUS_CODES:
+            # don't bother rendering when redirecting
+            return ''
+
         if self.layout is None:
             layout = zope.component.queryMultiAdapter(
                 (self, self.request, self.context),

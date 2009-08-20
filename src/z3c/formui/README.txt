@@ -867,6 +867,16 @@ However, the ``render`` method will render form's template as usual:
  >>> '<div class="viewspace">' in redirectView.render()
  True
 
+The same thing should work for AddForms:
+
+ >>> class RedirectingAddView(PersonAddForm):
+ ...     def update(self):
+ ...         super(RedirectingAddView, self).update()
+ ...         self.request.response.redirect('http://www.google.com/')
+ >>> redirectView = RedirectingAddView(person, divRequest)
+ >>> redirectView() == ''
+ True
+
 No required fields
 ------------------
 
