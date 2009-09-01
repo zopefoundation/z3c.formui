@@ -854,7 +854,7 @@ redirection in its update method:
  >>> class RedirectingView(PersonEditForm):
  ...     def update(self):
  ...         super(RedirectingView, self).update()
- ...         self.request.response.redirect('http://www.google.com/')
+ ...         self.request.response.redirect('.')
 
 It will return an empty string when called as a browser page.
 
@@ -872,7 +872,7 @@ The same thing should work for AddForms:
  >>> class RedirectingAddView(PersonAddForm):
  ...     def update(self):
  ...         super(RedirectingAddView, self).update()
- ...         self.request.response.redirect('http://www.google.com/')
+ ...         self.request.response.redirect('.')
  >>> redirectView = RedirectingAddView(person, divRequest)
  >>> redirectView() == ''
  True

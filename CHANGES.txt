@@ -9,6 +9,9 @@ CHANGES
 
 - Bug: Don't render add forms when redirecting as well.
 
+- Bug: Fix redirection tests with newer zope.publisher that restricts
+  untrusted redirects to different domains.
+
 2.0.0 (2009-06-14)
 ------------------
 
