@@ -20,8 +20,7 @@
       <div class="required-info"
            tal:condition="view/widgets/hasRequiredFields"
            metal:define-macro="required-info">
-         <span class="required">*</span>
-         &ndash; required
+         <tal:info content="structure view/requiredInfo" />
       </div>
     </metal:block>
     <metal:block define-slot="header">

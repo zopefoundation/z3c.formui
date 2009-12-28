@@ -7,6 +7,10 @@ CHANGES
 
 - Fixed tests so they do not break for `z3c.form` 2.2.0.
 
+- Using ``requiredInfo`` property (introduced in `z3c.form` 2.0.0) to
+  render the information about required fields. This property returns
+  an i18n message id making the information translateable.
+
 2.1.0 (2009-09-01)
 ------------------
 
