@@ -5,7 +5,7 @@ CHANGES
 2.1.1 (unreleased)
 ------------------
 
-- ...
+- Fixed tests so they do not break for `z3c.form` 2.2.0.
 
 2.1.0 (2009-09-01)
 ------------------
