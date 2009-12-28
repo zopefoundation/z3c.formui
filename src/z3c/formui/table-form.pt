@@ -103,6 +103,8 @@
           <metal:block define-slot="group-rows">
             <div metal:use-macro="macro:form-table" />
           </metal:block>
+          <metal:subgroups tal:condition="view/groups|nothing"
+                           metal:use-macro="macro:form-groups" />
         </fieldset>
       </metal:block>
       <tal:block repeat="widget view/widgets/values"

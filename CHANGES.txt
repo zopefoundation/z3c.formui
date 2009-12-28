@@ -11,6 +11,8 @@ CHANGES
   render the information about required fields. This property returns
   an i18n message id making the information translateable.
 
+- Added support for groups containing groups: They get displayed now.
+
 2.1.0 (2009-09-01)
 ------------------
 
