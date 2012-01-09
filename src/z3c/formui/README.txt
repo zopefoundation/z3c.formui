@@ -128,9 +128,11 @@ Now we can get our layout template:
   >>> layout = zope.component.getMultiAdapter((addForm, divRequest),
   ...     ILayoutTemplate)
 
-  >>> from z3c import ptcompat
-  >>> isinstance(layout, ptcompat.ViewPageTemplateFile)
-  True
+  >>> layout.__class__.__name__
+  'ViewPageTemplateFile'
+
+  >>> os.path.basename(layout.filename)
+  'myLayout.pt'
 
 
 DIV-based Layout
@@ -335,7 +337,7 @@ object.
   ...         return Person(**data)
 
 
-Let's now instantiate the adding component and isntantiate the add form:
+Let's now instantiate the adding component and the add form:
 
   >>> from zope.app.container.browser.adding import Adding
   >>> rootAdding = Adding(root, divRequest)
@@ -347,8 +349,8 @@ First, let's ensure that we can lookup a layout template for the form:
   >>> layout = zope.component.getMultiAdapter(
   ...     (addForm, divRequest), ILayoutTemplate)
 
-  >>> isinstance(layout, ptcompat.ViewPageTemplateFile)
-  True
+  >>> layout.__class__.__name__
+  'ViewPageTemplateFile'
 
 Okay, that worked. Let's now render the div-based addform:
 
@@ -410,8 +412,8 @@ Again, the layout should be available:
   >>> layout = zope.component.getMultiAdapter((addForm, tableRequest),
   ...     ILayoutTemplate)
 
-  >>> isinstance(layout, ptcompat.ViewPageTemplateFile)
-  True
+  >>> layout.__class__.__name__
+  'ViewPageTemplateFile'
 
 Let's now render the form:
 

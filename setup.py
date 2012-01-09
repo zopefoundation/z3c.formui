@@ -54,7 +54,7 @@ setup (
     package_dir = {'':'src'},
     namespace_packages = ['z3c'],
     extras_require = dict(
-        test = ['zope.testing', 'z3c.form [test]'],
+        test = ['z3c.form [test]'],
         ),
     install_requires = [
         'setuptools',

@@ -16,7 +16,7 @@ $Id: tests.py 72087 2007-01-18 01:03:33Z rogerineichen $
 """
 __docformat__ = "reStructuredText"
 
-from zope.testing import doctest
+import doctest
 import unittest
 import z3c.form.outputchecker
 import z3c.form.testing

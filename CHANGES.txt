@@ -5,7 +5,9 @@ CHANGES
 2.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- No longer using deprecated ``zope.testing.doctest`` but built-in
+  ``doctest`` instead.
+- Fixed tests so they do not break for `z3c.form` 2.5.0.
 
 
 2.2.0 (2009-12-28)
