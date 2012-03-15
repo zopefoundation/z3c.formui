@@ -50,7 +50,11 @@
       <metal:block define-macro="widget-rows">
         <tal:block repeat="widget view/widgets/values">
           <div id="" class="row"
-               tal:attributes="id string:${widget/id}-row"
+               tal:attributes="
+                   id string:${widget/id}-row;
+                   class python: 'row' + \
+                                 (widget.required and ' required' or '') + \
+                                 (widget.error and ' error' or '')"
                tal:condition="python:widget.mode != 'hidden'">
             <metal:block define-macro="widget-row">
               <div class="label">

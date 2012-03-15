@@ -2,17 +2,20 @@
 CHANGES
 =======
 
-2.2.2 (unreleased)
+2.3.0 (2012-03-15)
 ------------------
 
-- Nothing changed yet.
-
+- Feature: Mark a widget row with the "required" class when the widget is
+  required. Similarly, when the widget has an error attached, add the "error"
+  class to the widget row. That allows you to change the styles of the label
+  and the widget if it is reuqired.
 
 2.2.1 (2012-01-09)
 ------------------
 
 - No longer using deprecated ``zope.testing.doctest`` but built-in
   ``doctest`` instead.
+
 - Fixed tests so they do not break for `z3c.form` 2.5.0.
 
 

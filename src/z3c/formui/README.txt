@@ -150,7 +150,7 @@ Let's now render the page. Note the output doesn't contain the layout template:
         <span class="required">*</span> &ndash; required
       </div>
       <div>
-        <div id="form-widgets-name-row" class="row">
+        <div id="form-widgets-name-row" class="row required">
           <div class="label">
             <label for="form-widgets-name">
               <span>Name</span>
@@ -199,7 +199,7 @@ the form within the div-form content template:
             &ndash; required
           </div>
           <div>
-            <div id="form-widgets-name-row" class="row">
+            <div id="form-widgets-name-row" class="row required">
               <div class="label">
                 <label for="form-widgets-name">
                   <span>Name</span>
@@ -274,7 +274,7 @@ Now our new request should know the table based form template:
           </div>
           <div>
           <table class="form-fields">
-                <tr class="row">
+                <tr class="row required">
                   <td class="label">
                     <label for="form-widgets-name">
                       <span>Name</span>
@@ -366,7 +366,7 @@ Okay, that worked. Let's now render the div-based addform:
             &ndash; required
           </div>
           <div>
-            <div id="form-widgets-name-row" class="row">
+            <div id="form-widgets-name-row" class="row required">
               <div class="label">
                 <label for="form-widgets-name">
                   <span>Name</span>
@@ -430,7 +430,7 @@ Let's now render the form:
           </div>
           <div>
           <table class="form-fields">
-                <tr class="row">
+                <tr class="row required">
                   <td class="label">
                     <label for="form-widgets-name">
                       <span>Name</span>
@@ -757,7 +757,7 @@ Now we call the form which will update and render it:
       &ndash; required
     </div>
     <div>
-      <div id="form-widgets-name-row" class="row">
+      <div id="form-widgets-name-row" class="row required">
         <div class="label">
           <label for="form-widgets-name">
             <span>Name</span>
@@ -806,7 +806,7 @@ request and render the form again:
     </div>
     <div>
       <table class="form-fields">
-        <tr class="row">
+        <tr class="row required">
           <td class="label">
             <label for="form-widgets-name">
               <span>Name</span>

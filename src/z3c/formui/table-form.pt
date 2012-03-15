@@ -58,6 +58,10 @@
         <tbody metal:define-slot="formbody" tal:omit-tag="">
           <tal:block omit-tag="" repeat="widget view/widgets/values">
             <tr metal:define-macro="formrow" class="row"
+                tal:attributes="
+                   class python: 'row' +
+                                 (widget.required and ' required' or '') + \
+                                 (widget.error and ' error' or '')"
                 tal:condition="python:widget.mode != 'hidden'">
               <td class="label" metal:define-macro="labelcell">
                 <label tal:attributes="for widget/id">
