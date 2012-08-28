@@ -24,7 +24,7 @@ import z3c.form.testing
 
 def setUpZPT(test):
     z3c.form.testing.setUpZPT(test)
-    from zope.app.pagetemplate.metaconfigure import registerType
+    from zope.browserpage.metaconfigure import registerType
     from zope.contentprovider.tales import TALESProviderExpression
     from z3c.macro.tales import MacroExpression
     registerType('macro', MacroExpression)

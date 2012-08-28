@@ -481,15 +481,17 @@ correctly:
   >>> from zope.configuration import xmlconfig
   >>> import zope.component
   >>> import zope.viewlet
-  >>> import zope.app.component
-  >>> import zope.app.publisher.browser
+  >>> import zope.security
+  >>> import zope.publisher
+  >>> import zope.browserresource
   >>> import z3c.macro
   >>> import z3c.template
   >>> import z3c.formui
   >>> xmlconfig.XMLConfig('meta.zcml', zope.component)()
   >>> xmlconfig.XMLConfig('meta.zcml', zope.viewlet)()
-  >>> xmlconfig.XMLConfig('meta.zcml', zope.app.component)()
-  >>> xmlconfig.XMLConfig('meta.zcml', zope.app.publisher.browser)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.security)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.publisher)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.browserresource)()
   >>> xmlconfig.XMLConfig('meta.zcml', z3c.macro)()
   >>> xmlconfig.XMLConfig('meta.zcml', z3c.template)()
   >>> xmlconfig.XMLConfig('configure.zcml', z3c.formui)()
@@ -888,12 +890,12 @@ the "required-info" hint.
   >>> class IAdditionalInfo(zope.interface.Interface):
   ...
   ...     location = zope.schema.TextLine(title=u'Location', required=False)
-  ...     about = zope.schema.Text(title=u'About', required=False)  
+  ...     about = zope.schema.Text(title=u'About', required=False)
 
   >>> class AdditionalInfoForm(form.AddForm):
   ...
   ...     fields = field.Fields(IAdditionalInfo)
-  
+
   >>> additionalInfoForm = AdditionalInfoForm(root, divRequest)
   >>> additionalInfoForm.update()
   >>> '<div class="required-info">' in additionalInfoForm.render()
