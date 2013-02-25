@@ -2,10 +2,13 @@
 CHANGES
 =======
 
-2.3.1 (unreleased)
-------------------
+3.0.0a1 (unreleased)
+--------------------
 
-- ...
+- Added support for Python 3.3.
+
+- Dropped support for Python 2.4 and 2.5.
+
 
 2.3.0 (2012-03-15)
 ------------------
@@ -14,6 +17,7 @@ CHANGES
   required. Similarly, when the widget has an error attached, add the "error"
   class to the widget row. That allows you to change the styles of the label
   and the widget if it is reuqired.
+
 
 2.2.1 (2012-01-09)
 ------------------

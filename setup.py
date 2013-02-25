@@ -12,12 +12,9 @@
 #
 ##############################################################################
 """Setup
-
-$Id$
 """
 import os
 from setuptools import setup, find_packages
-
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
@@ -56,8 +53,7 @@ setup(
     package_dir={'': 'src'},
     namespace_packages=['z3c'],
     extras_require=dict(
-        test=['z3c.form [test]',
-              'z3c.form [latest]'],
+        test=['z3c.form [test]'],
         ),
     install_requires=[
         'setuptools',
@@ -68,5 +64,9 @@ setup(
         'zope.publisher',
         'zope.viewlet',
         ],
+    tests_require=[
+        'z3c.form [test]',
+        ],
+    test_suite='z3c.formui.tests.test_suite',
     zip_safe=False,
     )

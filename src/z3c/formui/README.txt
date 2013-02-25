@@ -38,9 +38,8 @@ Before we can start writing forms, we must have the content to work with:
   ...         required=False)
 
   >>> from zope.schema.fieldproperty import FieldProperty
-  >>> class Person(object):
-  ...     zope.interface.implements(IPerson)
-  ...
+  >>> @zope.interface.implementer(IPerson)
+  ... class Person(object):
   ...     name = FieldProperty(IPerson['name'])
   ...     age = FieldProperty(IPerson['age'])
   ...
@@ -110,7 +109,8 @@ more advanced content/layout render concept see z3c.pagelet.
   >>> temp_dir = tempfile.mkdtemp()
 
   >>> myLayout = os.path.join(temp_dir, 'myLayout.pt')
-  >>> open(myLayout, 'w').write('''<html>
+  >>> with open(myLayout, 'w') as file:
+  ...     _ = file.write('''<html>
   ...   <body>
   ...     <tal:block content="structure view/render">
   ...       content
@@ -141,7 +141,7 @@ DIV-based Layout
 Let's now render the page. Note the output doesn't contain the layout template:
 
   >>> addForm.update()
-  >>> print addForm.render()
+  >>> print(addForm.render())
   <form action="http://127.0.0.1" method="post"
           enctype="multipart/form-data" class="edit-form"
           name="form" id="form">
@@ -187,7 +187,7 @@ Let's now render the page. Note the output doesn't contain the layout template:
 But we can call our form which uses the new layout template which renders
 the form within the div-form content template:
 
-  >>> print addForm()
+  >>> print(addForm())
   <html>
     <body>
       <form action="http://127.0.0.1" method="post"
@@ -261,7 +261,7 @@ Patch the request and call the form again:
 Now our new request should know the table based form template:
 
   >>> addForm = PersonAddForm(root, tableRequest)
-  >>> print addForm()
+  >>> print(addForm())
   <html>
     <body>
       <form action="http://127.0.0.1" method="post"
@@ -337,9 +337,12 @@ object.
   ...         return Person(**data)
 
 
-Let's now instantiate the adding component and the add form:
+Let's now instantiate the "fake" adding component and the add form:
 
-  >>> from zope.app.container.browser.adding import Adding
+  >>> class Adding(object):
+  ...     def __init__(self, context, request):
+  ...         self.context = context
+  ...         self.request = request
   >>> rootAdding = Adding(root, divRequest)
 
   >>> addForm = AddingPersonAddForm(rootAdding, divRequest)
@@ -354,7 +357,7 @@ First, let's ensure that we can lookup a layout template for the form:
 
 Okay, that worked. Let's now render the div-based addform:
 
-  >>> print addForm()
+  >>> print(addForm())
   <html>
     <body>
       <form action="http://127.0.0.1" method="post"
@@ -417,7 +420,7 @@ Again, the layout should be available:
 
 Let's now render the form:
 
-  >>> print addForm()
+  >>> print(addForm())
   <html>
     <body>
       <form action="http://127.0.0.1" method="post"
@@ -695,8 +698,7 @@ Let's give a quick overview how subform content and layout templates get used:
 First define a new form which uses the template getter methods offered
 from z3.template
 
-  >>> from z3c.template.template import getPageTemplate
-  >>> from z3c.template.template import getLayoutTemplate
+  >>> from z3c.template.template import getPageTemplate, getLayoutTemplate
 
 The ``provider`` TALES expression which is a part of the lookup concept
 was already registered by the testing setup, so we don't need to do it
@@ -752,7 +754,7 @@ Now we can render the form with our previous created person instance:
 
 Now we call the form which will update and render it:
 
-  >>> print editForm()
+  >>> print(editForm())
   <div class="viewspace">
     <div class="required-info">
       <span class="required">*</span>
@@ -800,7 +802,7 @@ Of course this works with table layout based forms too. Let's use our table
 request and render the form again:
 
   >>> editForm = PersonEditForm(person, tableRequest)
-  >>> print editForm()
+  >>> print(editForm())
   <div class="viewspace">
     <div class="required-info">
       <span class="required">*</span>

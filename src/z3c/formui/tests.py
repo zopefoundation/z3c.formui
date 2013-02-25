@@ -11,15 +11,14 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
+"""Test Setup
 """
-$Id: tests.py 72087 2007-01-18 01:03:33Z rogerineichen $
-"""
-__docformat__ = "reStructuredText"
-
 import doctest
 import unittest
 import z3c.form.outputchecker
 import z3c.form.testing
+
+
 
 
 def setUpZPT(test):
@@ -45,6 +44,6 @@ def test_suite():
             setUp=setUp,
             tearDown=z3c.form.testing.tearDown,
             optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
-            checker=z3c.form.outputchecker.OutputChecker(doctest))
+            checker=z3c.form.testing.outputChecker)
         #for setUp in (setUpZPT, setUpZ3CPT)]) # XXX: broken macro tests
         for setUp in (setUpZPT, )])
