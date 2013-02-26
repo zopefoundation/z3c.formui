@@ -5,7 +5,7 @@ CHANGES
 3.0.0a2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Added missing version Trove classifiers.
 
 
 3.0.0a1 (2013-02-25)
