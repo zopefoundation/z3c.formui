@@ -1,0 +1,39 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c">
+
+  <!-- IContentTemplate -->
+  <z3c:template
+      template="table-form.pt"
+      for="z3c.form.interfaces.IInputForm"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:template
+      template="table-form-display.pt"
+      for="z3c.form.interfaces.IDisplayForm"
+      layer=".interfaces.ITableFormLayer"
+      />
+
+  <!-- named IContentTemplate -->
+  <z3c:template
+      name="display"
+      template="table-form-display.pt"
+      for="z3c.form.interfaces.IForm"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <z3c:template
+      name="subform"
+      template="subform.pt"
+      for="z3c.form.interfaces.IForm"
+      layer=".interfaces.ITableFormLayer"
+      />
+
+  <!-- named ILayoutTemplate -->
+  <z3c:layout
+      name="subform"
+      template="subform-layout.pt"
+      for="z3c.form.interfaces.IForm"
+      layer=".interfaces.ITableFormLayer"
+      />
+
+</configure>

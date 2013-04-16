@@ -1,0 +1,9 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+  <interface
+      interface=".interfaces.ITableFormLayer"
+      type="zope.publisher.interfaces.browser.IBrowserSkinType"
+      />
+
+</configure>

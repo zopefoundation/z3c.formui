@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:resource
+      name="div-form.css"
+      file="div-form.css"
+      layer=".interfaces.IDivFormLayer"
+      />
+  <browser:viewlet
+      name="div-form.css"
+      for="*"
+      manager=".interfaces.ICSS"
+      class=".browser.DivFormCSSViewlet"
+      permission="zope.Public"
+      layer=".interfaces.IDivFormLayer"
+      />
+
+</configure>

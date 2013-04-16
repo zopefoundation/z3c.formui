@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:resource
+      name="table-form.css"
+      file="table-form.css"
+      layer=".interfaces.ITableFormLayer"
+      />
+  <browser:viewlet
+      name="table-form.css"
+      for="*"
+      manager=".interfaces.ICSS"
+      class=".browser.TableFormCSSViewlet"
+      permission="zope.Public"
+      layer=".interfaces.ITableFormLayer"
+      />
+
+</configure>
