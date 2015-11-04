@@ -5,6 +5,8 @@ CHANGES
 3.0.0a3 (unreleased)
 --------------------
 
+- Standardize namespace __init__
+
 - Split config, mostly to be able to include in pyramid without browser
   resources and viewlets
 
