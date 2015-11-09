@@ -2,8 +2,8 @@
 CHANGES
 =======
 
-3.0.0a3 (unreleased)
---------------------
+3.0.0 (2015-11-09)
+------------------
 
 - Standardize namespace __init__
 
