@@ -27,7 +27,7 @@ setup(
     author_email="zope-dev@zope.org",
     description="A set of initial UI components for z3c.form.",
     long_description=(
-        read('README.txt')
+        read('README.md')
         + '\n\n' +
         '.. contents::'
         + '\n\n' +
