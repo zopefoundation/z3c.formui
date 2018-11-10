@@ -1,11 +1,11 @@
 *.pyc
-__pycache__
-src/*.egg-info
-benchmark/*.egg-info
+.coverage
 .idea
 .installed.cfg
 .tox
+__pycache__
 bin
 develop-eggs
 docs
 parts
+src/*.egg-info

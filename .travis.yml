@@ -6,8 +6,13 @@ env:
     - "3.5"
     - "3.6"
 install:
-    - travis_retry pip install tox-travis
+    - pip install -U pip setuptools
+    - pip install -U coverage coveralls zope.testrunner
+    - pip install -U -e .[test]
 script:
-    - tox
+    - coverage run -m zope.testrunner --test-path=src
+after_success:
+    - coveralls
 notifications:
     email: false
+cache: pip
