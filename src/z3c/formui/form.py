@@ -11,12 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Form UI Browser
-
-$Id: browser.py 75941 2007-05-24 14:48:22Z srichter $
-"""
-__docformat__ = "reStructuredText"
-
+"""Form UI Browser."""
 import zope.component
 from z3c.form import form
 from z3c.formui import layout
@@ -36,7 +31,7 @@ class ContentTemplateMixin(object):
     """
 
     def render(self):
-        '''See interfaces.IForm'''
+        """See interfaces.IForm."""
         # render content template
         if self.template is None:
             template = zope.component.queryMultiAdapter(
@@ -53,8 +48,10 @@ class BaseForm(ContentTemplateMixin, layout.FormLayoutSupport, form.BaseForm):
     """Layout aware base form."""
 
 
-class DisplayForm(ContentTemplateMixin, layout.FormLayoutSupport,
-    form.DisplayForm):
+class DisplayForm(
+        ContentTemplateMixin,
+        layout.FormLayoutSupport,
+        form.DisplayForm):
     """Layout aware display form."""
 
 

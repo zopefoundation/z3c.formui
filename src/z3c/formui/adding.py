@@ -11,14 +11,10 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Implementation of layout-aware addform for IAdding
-
-$Id:$
-"""
-__docformat__ = "reStructuredText"
-
+"""Implementation of layout-aware addform for IAdding."""
 from z3c.form import adding
 from z3c.formui import form, layout
+
 
 class AddForm(form.ContentTemplateMixin, layout.AddFormLayoutSupport,
               adding.AddForm):
