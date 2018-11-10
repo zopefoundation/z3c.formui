@@ -16,13 +16,14 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 
 setup(
     name='z3c.formui',
-    version='4.0.0.dev0',
+    version='3.1.dev0',
     author="Stephan Richter, Roger Ineichen and the Zope Community",
     author_email="zope-dev@zope.org",
     description="A set of initial UI components for z3c.form.",
@@ -34,7 +35,7 @@ setup(
         read('src', 'z3c', 'formui', 'README.txt')
         + '\n\n' +
         read('CHANGES.txt')
-        ),
+    ),
     license="ZPL 2.1",
     keywords="zope3 form widget",
     classifiers=[
@@ -49,6 +50,7 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: Implementation :: CPython',
         'Natural Language :: English',
         'Operating System :: OS Independent',
@@ -61,7 +63,7 @@ setup(
     namespace_packages=['z3c'],
     extras_require=dict(
         test=['z3c.form[test]'],
-        ),
+    ),
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     install_requires=[
         'setuptools',
@@ -71,10 +73,10 @@ setup(
         'zope.component',
         'zope.publisher',
         'zope.viewlet',
-        ],
+    ],
     tests_require=[
         'z3c.form [test]',
-        ],
+    ],
     test_suite='z3c.formui.tests.test_suite',
     zip_safe=False,
-    )
+)

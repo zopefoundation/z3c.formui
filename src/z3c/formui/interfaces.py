@@ -11,22 +11,22 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Form UI Interfaces
-
-$Id$
-"""
-__docformat__ = "reStructuredText"
+"""Form UI Interfaces."""
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.viewlet.interfaces import IViewletManager
+
 
 class IFormUILayer(IBrowserRequest):
     """A basic layer for the Form UI package."""
 
+
 class IDivFormLayer(IFormUILayer):
     """A layer that supports forms created only using DIV elements."""
 
+
 class ITableFormLayer(IFormUILayer):
     """A layer that supports forms created using tables."""
+
 
 class ICSS(IViewletManager):
     """CSS viewlet manager."""

@@ -19,8 +19,6 @@ import z3c.form.outputchecker
 import z3c.form.testing
 
 
-
-
 def setUpZPT(test):
     z3c.form.testing.setUpZPT(test)
     from zope.browserpage.metaconfigure import registerType
@@ -43,7 +41,7 @@ def test_suite():
             'README.txt',
             setUp=setUp,
             tearDown=z3c.form.testing.tearDown,
-            optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
+            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
             checker=z3c.form.testing.outputChecker)
-        #for setUp in (setUpZPT, setUpZ3CPT)]) # XXX: broken macro tests
+        # for setUp in (setUpZPT, setUpZ3CPT)]) # XXX: broken macro tests
         for setUp in (setUpZPT, )])
