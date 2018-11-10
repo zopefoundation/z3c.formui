@@ -8,6 +8,7 @@ env:
 install:
     - pip install -U pip setuptools
     - pip install -U coverage coveralls zope.testrunner
+    - pip install -U z3c.form[test]
     - pip install -U -e .[test]
 script:
     - coverage run -m zope.testrunner --test-path=src
