@@ -18,3 +18,9 @@ fail-under = 83
 additional-rules = [
     "recursive-include src *.css",
     ]
+
+[github-actions]
+additional-install = [
+    "sudo apt-get update",
+    "sudo apt-get install libxml2-dev libxslt-dev",
+    ]
