@@ -51,6 +51,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
         'Natural Language :: English',
         'Operating System :: OS Independent',
@@ -62,7 +63,11 @@ setup(
     package_dir={'': 'src'},
     namespace_packages=['z3c'],
     extras_require=dict(
-        test=['z3c.form[test]'],
+        test=[
+            'lxml',
+            'z3c.form[test]',
+            'zope.testing',
+        ],
     ),
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
     install_requires=[
@@ -74,9 +79,5 @@ setup(
         'zope.publisher',
         'zope.viewlet',
     ],
-    tests_require=[
-        'z3c.form [test]',
-    ],
-    test_suite='z3c.formui.tests.test_suite',
     zip_safe=False,
 )
