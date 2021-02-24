@@ -1,0 +1,20 @@
+# Generated from:
+# https://github.com/zopefoundation/meta/tree/master/config/pure-python
+[meta]
+template = "pure-python"
+commit-id = "519ffffe1b360ede58b32a375b5f8b26059d8016"
+
+[python]
+with-appveyor = false
+with-pypy = false
+with-legacy-python = true
+with-docs = false
+with-sphinx-doctests = false
+
+[coverage]
+fail-under = 83
+
+[manifest]
+additional-rules = [
+    "recursive-include src *.css",
+    ]
