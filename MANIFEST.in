@@ -5,9 +5,8 @@ include *.txt
 include buildout.cfg
 include tox.ini
 
-recursive-include src *.pt
 recursive-include src *.py
-recursive-include src *.rst
+recursive-include src *.css
+recursive-include src *.pt
 recursive-include src *.txt
 recursive-include src *.zcml
-recursive-include src *.css
