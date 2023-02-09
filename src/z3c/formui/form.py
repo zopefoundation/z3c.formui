@@ -14,8 +14,10 @@
 """Form UI Browser."""
 import zope.component
 from z3c.form import form
-from z3c.formui import layout
 from z3c.template.interfaces import IContentTemplate
+
+from z3c.formui import layout
+
 
 # offer built in layout support
 extends = form.extends
