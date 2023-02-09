@@ -24,7 +24,7 @@ extends = form.extends
 applyChanges = form.applyChanges
 
 
-class ContentTemplateMixin(object):
+class ContentTemplateMixin:
     """Use IContentTemplate instead of IPageTemplate.
 
     This prevents us running into a recusrion because of mess up layout and
