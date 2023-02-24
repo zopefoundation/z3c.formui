@@ -13,7 +13,9 @@
 ##############################################################################
 """Implementation of layout-aware addform for IAdding."""
 from z3c.form import adding
-from z3c.formui import form, layout
+
+from z3c.formui import form
+from z3c.formui import layout
 
 
 class AddForm(form.ContentTemplateMixin, layout.AddFormLayoutSupport,

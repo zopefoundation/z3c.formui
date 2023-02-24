@@ -24,7 +24,7 @@ from z3c.template.interfaces import ILayoutTemplate
 REDIRECT_STATUS_CODES = (301, 302, 303)
 
 
-class FormLayoutSupport(object):
+class FormLayoutSupport:
     """Layout support for forms except IAddForm."""
 
     layout = None
@@ -47,7 +47,7 @@ class FormLayoutSupport(object):
         return self.layout()
 
 
-class AddFormLayoutSupport(object):
+class AddFormLayoutSupport:
     """Layout support for IAddForm."""
 
     layout = None

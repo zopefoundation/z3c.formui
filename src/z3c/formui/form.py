@@ -14,15 +14,17 @@
 """Form UI Browser."""
 import zope.component
 from z3c.form import form
-from z3c.formui import layout
 from z3c.template.interfaces import IContentTemplate
+
+from z3c.formui import layout
+
 
 # offer built in layout support
 extends = form.extends
 applyChanges = form.applyChanges
 
 
-class ContentTemplateMixin(object):
+class ContentTemplateMixin:
     """Use IContentTemplate instead of IPageTemplate.
 
     This prevents us running into a recusrion because of mess up layout and

@@ -15,24 +15,25 @@
 """
 import doctest
 import unittest
+
 import z3c.form.outputchecker
 import z3c.form.testing
 
 
 def setUpZPT(test):
     z3c.form.testing.setUpZPT(test)
+    from z3c.macro.tales import MacroExpression
     from zope.browserpage.metaconfigure import registerType
     from zope.contentprovider.tales import TALESProviderExpression
-    from z3c.macro.tales import MacroExpression
     registerType('macro', MacroExpression)
     registerType('provider', TALESProviderExpression)
 
 
-def setUpZ3CPT(test):
-    z3c.form.testing.setUpZ3CPT(test)
-    from zope.component import provideUtility
-    from z3c.macro.tales import z3cpt_macro_expression
-    provideUtility(z3cpt_macro_expression, name='macro')
+# def setUpZ3CPT(test):
+#     z3c.form.testing.setUpZ3CPT(test)
+#     from z3c.macro.tales import z3cpt_macro_expression
+#     from zope.component import provideUtility
+#     provideUtility(z3cpt_macro_expression, name='macro')
 
 
 def test_suite():
