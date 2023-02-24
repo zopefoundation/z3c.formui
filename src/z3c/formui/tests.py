@@ -29,11 +29,11 @@ def setUpZPT(test):
     registerType('provider', TALESProviderExpression)
 
 
-def setUpZ3CPT(test):
-    z3c.form.testing.setUpZ3CPT(test)
-    from z3c.macro.tales import z3cpt_macro_expression
-    from zope.component import provideUtility
-    provideUtility(z3cpt_macro_expression, name='macro')
+# def setUpZ3CPT(test):
+#     z3c.form.testing.setUpZ3CPT(test)
+#     from z3c.macro.tales import z3cpt_macro_expression
+#     from zope.component import provideUtility
+#     provideUtility(z3cpt_macro_expression, name='macro')
 
 
 def test_suite():
