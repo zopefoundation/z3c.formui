@@ -25,7 +25,7 @@ def read(*rnames):
 
 setup(
     name='z3c.formui',
-    version='4.1.dev0',
+    version='5.0.dev0',
     author="Stephan Richter, Roger Ineichen and the Zope Community",
     author_email="zope-dev@zope.dev",
     description="A set of initial UI components for z3c.form.",
@@ -47,11 +47,11 @@ setup(
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Programming Language :: Python :: Implementation :: CPython',
         'Natural Language :: English',
         'Operating System :: OS Independent',
@@ -70,7 +70,7 @@ setup(
             'zope.testing',
         ],
     ),
-    python_requires='>=3.7',
+    python_requires='>=3.8',
     install_requires=[
         'setuptools',
         'z3c.form >= 2.2.0',
